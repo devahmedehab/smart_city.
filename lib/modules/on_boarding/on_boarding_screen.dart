@@ -28,17 +28,17 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   List<BoardingModel> boarding = [
     BoardingModel(
       image: 'assets/images/onboard_2.png',
-      title: 'Welcome to Smart City',
-      body: 'On Board 1 Body',
+      title: 'Internet of Things',
+      body: '     With IoT Everything is connected.',
     ),BoardingModel(
       image: 'assets/images/onboard_1.png',
-      title: 'On Board 2 Title',
-      body: 'On Board 2 Body',
+      title: 'Welcome To Your Smart City',
+      body: '     We made everything Smart for you \n     Let\'s live easier..',
     ),
     BoardingModel(
       image: 'assets/images/onboard_3.png',
-      title: 'On Board 2 Title',
-      body: 'On Board 2 Body',
+      title: 'Smart Parking',
+      body: '     By connecting to the network,\n     You can easily find out the nearest Parking to you...',
     ),
     BoardingModel(
       image: 'assets/images/onboard.png',
