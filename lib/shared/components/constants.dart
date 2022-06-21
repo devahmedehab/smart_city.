@@ -42,4 +42,6 @@ var slots5;
 var slots6;
 var temp;
 var gas;
+var hum;
+var rain;
 

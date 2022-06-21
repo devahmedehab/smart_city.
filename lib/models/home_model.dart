@@ -10,10 +10,9 @@ class HomeModel {
     message = json['message'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }
-
 }
 
- class  Data {
+class Data {
   List<int> degrees;
 
   Data({this.degrees});

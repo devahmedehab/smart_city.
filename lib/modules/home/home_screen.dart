@@ -57,8 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
     RefreshController _refreshController = RefreshController();
     bool _hasInternet =false;
     ConnectivityResult result = ConnectivityResult.none;
-    var tempController= TextEditingController();
-    var gasController= TextEditingController();
+
     double temperature = 7;
     Size size = MediaQuery.of(context).size;
     return BlocConsumer<HomeCubit, HomeStates>(
@@ -66,9 +65,10 @@ class _HomeScreenState extends State<HomeScreen> {
         if(state is ParkingSuccessHomeState){
           if(state.homeModel.status){
             var model = HomeCubit.get(context).homeModel;
-            temp =model.data.degrees[0];
-            gas =model.data.degrees[1];
-
+            temp = model.data.degrees[0];
+            gas  = model.data.degrees[1];
+            hum  = model.data.degrees[2];
+            rain = model.data.degrees[3];
           }
 
         }
@@ -112,166 +112,363 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Expanded(
                 child: Column(
+
                   children: [
+
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20.0),
-                      child: SleekCircularSlider(
-                        appearance: CircularSliderAppearance(
-                          /* customColors: CustomSliderColors(
-                            trackColor: Colors.black12,
-                            dotColor: Colors.blueGrey[600],
-                            progressBarColor: Colors.blueGrey[300],
-                          ),*/
-                          startAngle: 0,
-                          angleRange: 360,
-                          size: 300,
-
-
-                          customWidths:
-                          CustomSliderWidths(progressBarWidth: 0, handlerSize:0),
-                        ),
-
-                        initialValue: temperature,
-                        onChangeEnd: (_value) => _value,
-                        innerWidget: (percentage) => Padding(
-                          padding: const EdgeInsets.all(30.0),
-                          child: Center(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                shape: BoxShape.circle,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.1),
-                                    blurRadius: 7,
-                                    spreadRadius: 8,
-                                  ),
-                                ],
+                      child: Row(
+                        children: [
+                          SizedBox(width: 20,),
+                          SleekCircularSlider(
+                            appearance: CircularSliderAppearance(
+                              customColors: CustomSliderColors(
+                                trackColor: Colors.white,
+                                dotColor: Colors.white,
+                                progressBarColor: Colors.white,
                               ),
-                              child: Container(
-                                margin: EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Colors.blueGrey,
-                                    width: 1,
-                                  ),
-                                  shape: BoxShape.circle,
-                                  color: Colors.white,
-                                ),
-                                child: Center(
+                              startAngle: 0,
+                              angleRange: 360,
+                              size: 250,
 
-                                  child: Column(
-                                    children: [
-                                      SizedBox(
-                                        height: 60,
-                                      ),
-                                      Text(
-                                        '${temp}° C',
-                                        style: TextStyle(
-                                          fontSize: 12 + (22 * 683 / size.height),
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      Text(
-                                        'Temperature',
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          color: Colors.black,
-                                        ),
-                                      ),
 
+                              customWidths:
+                              CustomSliderWidths(progressBarWidth: 0, handlerSize:0),
+                            ),
+
+                            initialValue: temperature,
+                            onChangeEnd: (_value) => _value,
+                            innerWidget: (percentage) => Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Center(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    shape: BoxShape.circle,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.1),
+                                        blurRadius: 7,
+                                        spreadRadius: 8,
+                                      ),
                                     ],
                                   ),
+                                  child: Container(
+                                    margin: EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Colors.blueGrey,
+                                        width: 1,
+                                      ),
+                                      shape: BoxShape.circle,
+                                      color: Colors.white,
+                                    ),
+                                    child: Center(
 
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            height: 60,
+                                          ),
+                                          Text(
+                                            '${temp}° C',
+                                            style: TextStyle(
+                                              fontSize: 12 + (22 * 683 / size.height),
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          SizedBox(height: 10,),
+                                          Text(
+                                            'Temperature',
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+
+                                        ],
+                                      ),
+
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
+                          SizedBox(width: 20,),
+                          SleekCircularSlider(
+                            appearance: CircularSliderAppearance(
+                              customColors: CustomSliderColors(
+                                trackColor: Colors.white,
+                                dotColor: Colors.white,
+                                progressBarColor: Colors.white,
+                              ),
+
+                              startAngle: 0,
+                              angleRange: 360,
+                              size: 250,
+
+
+                              customWidths:
+                              CustomSliderWidths(progressBarWidth: 0, handlerSize:0),
+                            ),
+
+                            initialValue: temperature,
+                            onChangeEnd: (_value) => _value,
+                            innerWidget: (percentage) => Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Center(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    shape: BoxShape.circle,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.1),
+                                        blurRadius: 7,
+                                        spreadRadius: 8,
+                                      ),
+                                    ],
+                                  ),
+                                  child: Container(
+                                    margin: EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Colors.blueGrey,
+                                        width: 1,
+                                      ),
+                                      shape: BoxShape.circle,
+                                      color: Colors.white,
+                                    ),
+                                    child: Center(
+
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            height: 60,
+                                          ),
+                                          if(gas==1)
+                                          Text(
+                                            'Warning.!',
+                                            style: TextStyle(
+                                              fontSize: 12 + (22 * 683 / size.height),
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          if(gas != 1)
+                                            Text(
+                                              'All is well',
+                                              style: TextStyle(
+                                                fontSize: 12 + (22 * 683 / size.height),
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          SizedBox(height: 10,),
+
+                                          Text(
+                                            'Gas',
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+
+                                        ],
+                                      ),
+
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     Spacer(),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20.0),
-                      child: SleekCircularSlider(
-                        appearance: CircularSliderAppearance(
-                          customColors: CustomSliderColors(
-                            trackColor: Colors.black12,
-                            dotColor: Colors.blueGrey[600],
-                            progressBarColor: Colors.blueGrey[300],
-                          ),
-                          startAngle: 130.0,
-                          angleRange: 280.0,
-                          size: 300,
 
-
-                          customWidths:
-                          CustomSliderWidths(progressBarWidth: 5, handlerSize: 10),
-                        ),
-                        min: 0,
-                        max: 30,
-                        initialValue: temperature,
-                        onChangeEnd: (_value) => _value,
-                        innerWidget: (percentage) => Padding(
-                          padding: const EdgeInsets.all(30.0),
-                          child: Center(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                shape: BoxShape.circle,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.1),
-                                    blurRadius: 7,
-                                    spreadRadius: 8,
-                                  ),
-                                ],
+                      child: Row(
+                        children: [
+                          SizedBox(width: 20,),
+                          SleekCircularSlider(
+                            appearance: CircularSliderAppearance(
+                              customColors: CustomSliderColors(
+                                trackColor: Colors.white,
+                                dotColor: Colors.white,
+                                progressBarColor: Colors.white,
                               ),
-                              child: Container(
-                                margin: EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Colors.blueGrey,
-                                    width: 1,
-                                  ),
-                                  shape: BoxShape.circle,
-                                  color: Colors.white,
-                                ),
-                                child: Center(
 
-                                  child:
-                                  Column(
-                                    children: [
-                                      SizedBox(
-                                        height: 75,
-                                      ),
-                                      Text(
-                                        '${gas}',
-                                        style: TextStyle(
-                                          fontSize: 12 + (22 * 683 / size.height),
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      Text(
-                                        'Gas',
-                                        style: TextStyle(
-                                          fontSize: 9 + (22 * 683 / size.height),
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      ),
+                              startAngle: 0,
+                              angleRange: 360,
+                              size: 250,
 
+
+                              customWidths:
+                              CustomSliderWidths(progressBarWidth: 0, handlerSize: 0),
+                            ),
+                            min: 0,
+                            max: 30,
+                            initialValue: temperature,
+                            onChangeEnd: (_value) => _value,
+                            innerWidget: (percentage) => Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Center(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    shape: BoxShape.circle,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.1),
+                                        blurRadius: 7,
+                                        spreadRadius: 8,
+                                      ),
                                     ],
+                                  ),
+                                  child: Container(
+                                    margin: EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Colors.blueGrey,
+                                        width: 1,
+                                      ),
+                                      shape: BoxShape.circle,
+                                      color: Colors.white,
+                                    ),
+                                    child: Center(
+
+                                      child:
+                                      Column(
+                                        children: [
+                                          SizedBox(
+                                            height: 75,
+                                          ),
+                                          Text(
+                                            '${hum} %',
+                                            style: TextStyle(
+                                              fontSize: 12 + (22 * 683 / size.height),
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          SizedBox(height: 10,),
+                                          Text(
+                                            'Humidity',
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
+                          SizedBox(width: 20,),
+
+                          SleekCircularSlider(
+                            appearance: CircularSliderAppearance(
+                              customColors: CustomSliderColors(
+                                trackColor: Colors.white,
+                                dotColor: Colors.white,
+                                progressBarColor: Colors.white,
+                              ),
+                              startAngle: 0,
+                              angleRange: 360.0,
+                              size: 250,
+
+
+                              customWidths:
+                              CustomSliderWidths(progressBarWidth: 0, handlerSize: 0),
+                            ),
+                            min: 0,
+                            max: 30,
+                            initialValue: temperature,
+                            onChangeEnd: (_value) => _value,
+                            innerWidget: (percentage) => Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Center(
+
+
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    shape: BoxShape.circle,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.1),
+                                        blurRadius: 7,
+                                        spreadRadius: 8,
+                                      ),
+                                    ],
+                                  ),
+                                  child: Container(
+                                    margin: EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Colors.blueGrey,
+                                        width: 1,
+                                      ),
+                                      shape: BoxShape.circle,
+                                      color: Colors.white,
+                                    ),
+                                    child: Center(
+
+                                      child:
+                                      Column(
+                                        children: [
+                                          SizedBox(
+                                            height: 75,
+                                          ),
+                                          if(rain == 1)
+                                            Text(
+                                              'Rainy',
+                                              style: TextStyle(
+                                                fontSize: 12 + (22 * 683 / size.height),
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+
+                                        if(rain!=1)
+                                          Text(
+                                            'Clear sky',
+                                            style: TextStyle(
+                                              fontSize: 12 + (22 * 683 / size.height),
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          SizedBox(height: 10,),
+                                          Text(
+                                            'Rain',
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
+                    SizedBox(height: 100,),
 
                   ],
                 ),

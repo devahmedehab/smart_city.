@@ -29,21 +29,26 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     BoardingModel(
       image: 'assets/images/onboard_2.png',
       title: 'Internet of Things',
-      body: '     With IoT Everything is connected.',
+      body: '     With IoT Everything is Connected.',
     ),BoardingModel(
       image: 'assets/images/onboard_1.png',
-      title: 'Welcome To Your Smart City',
+      title: 'Welcome to your Smart City',
       body: '     We made everything Smart for you \n     Let\'s live easier..',
     ),
     BoardingModel(
       image: 'assets/images/onboard_3.png',
       title: 'Smart Parking',
-      body: '     By connecting to the network,\n     You can easily find out the nearest Parking to you...',
+      body: '     By connecting to the network,\n     You can easily find out\n     the nearest Parking to you...',
     ),
     BoardingModel(
       image: 'assets/images/onboard.png',
-      title: 'On Board 3 Title',
-      body: 'On Board 3 Body',
+      title: 'Smart Home',
+      body: '     You can find out if your home\n is in danger through us\n     from anywhere....',
+    ),
+    BoardingModel(
+      image: 'assets/images/onboard_4.png',
+      title: 'Explore New Place For You',
+      body: '      Come on.\n      You can know more about\n your smart city,\n      let\'s check it out.....',
     ),
   ];
   bool isLast =false;
@@ -152,7 +157,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         Expanded(
           child: Image(
             image: AssetImage('${model.image}',),
-            // fit: BoxFit.cover,
+
           ),
         ),
         Text(

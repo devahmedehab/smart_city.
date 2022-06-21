@@ -104,7 +104,7 @@ class EditProfileScreen extends StatelessWidget {
                                       Colors.deepPurpleAccent,
                                       child: CircleAvatar(
                                         radius: 64,
-                                        backgroundImage: AssetImage('assets/images/onboard_1.jpg'),
+                                        backgroundImage: AssetImage('assets/images/onboard_1.png'),
                                       ),
                                     ),
                                     IconButton(
