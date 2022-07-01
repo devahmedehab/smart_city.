@@ -190,12 +190,7 @@ StreamSubscription _streamSubscription;
               buildListTile("Settings", Icons.settings_outlined, () {
                 navigateTo(context, SettingsScreen());
               }),
-             /* SizedBox(
-                height: 15,
-              ),
-              buildListTile("About Us", Icons.info, () {
-                navigateTo(context, AboutUsScreen());
-              }),*/
+
               SizedBox(
                 height: 15,
               ),

@@ -1,16 +1,11 @@
-import 'dart:async';
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
-import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:io';
 import 'package:bloc/bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:smart_city/layout/cubit/cubit.dart';
 import 'package:smart_city/layout/layout_screen.dart';
-import 'package:smart_city/models/home_model.dart';
 import 'package:smart_city/models/login_model.dart';
 import 'package:smart_city/modules/home/cubit/cubit.dart';
 import 'package:smart_city/modules/login/parking_login_screen.dart';
@@ -25,12 +20,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_city/shared/network/dio_helper.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
-import 'package:ndialog/ndialog.dart';
 
 
-void main() async {
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
 
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
@@ -57,6 +50,8 @@ void main() async {
   } else {
     widget = OnBoardingScreen();
   }
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
 
   runApp(MyApp(
     isDark: isDark,
@@ -76,14 +71,14 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
-
-
-
-
   final MqttServerClient client =MqttServerClient('server', 'id');
   String statusText = "Status Text";
   Future<UserData> futureData;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   Widget build(BuildContext context) {
 
@@ -113,7 +108,7 @@ class _MyAppState extends State<MyApp> {
                 return OverlaySupport.global(
                   child: MaterialApp(
                     debugShowCheckedModeBanner: false,
-                    theme: ThemeData(primarySwatch: Colors.blueGrey),
+                    theme: ThemeData(primarySwatch: Colors.purple),
                     darkTheme: ThemeData.dark(),
                     themeMode: AppCubit.get(context).isDark
                         ? ThemeMode.light
@@ -127,9 +122,9 @@ class _MyAppState extends State<MyApp> {
     );
 
   }
-  _connect(){}
+  connect(){}
 
-  _disconnect(){}
+  disconnect(){}
 
 
   Future<bool> mqttConnect(String uniqueId) async{
