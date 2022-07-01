@@ -108,7 +108,7 @@ class _MyAppState extends State<MyApp> {
                 return OverlaySupport.global(
                   child: MaterialApp(
                     debugShowCheckedModeBanner: false,
-                    theme: ThemeData(primarySwatch: Colors.purple),
+                    theme: ThemeData(primarySwatch: Colors.blueGrey),
                     darkTheme: ThemeData.dark(),
                     themeMode: AppCubit.get(context).isDark
                         ? ThemeMode.light

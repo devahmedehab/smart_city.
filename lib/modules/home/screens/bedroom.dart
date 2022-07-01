@@ -45,184 +45,186 @@ class BedRoom extends StatelessWidget {
                 //  enablePullUp: true,
                 controller: _refreshController,
                 child:
-                Column(children: [
-                  SizedBox(height: 20),
-                  Text(
-                    'Today',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 22,
-                      fontWeight: FontWeight.w200,
+                SingleChildScrollView(
+                  child: Column(children: [
+                    SizedBox(height: 20),
+                    Text(
+                      'Today',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w200,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 50,
-                  ),
-                  Center(
-                    child: Column(
-                      children: [
-                        SleekCircularSlider(
-                          appearance: CircularSliderAppearance(
-                            customColors: CustomSliderColors(
-                              trackColor: Colors.white,
-                              dotColor: Colors.white,
-                              progressBarColor: Colors.white,
+                    SizedBox(
+                      height: 50,
+                    ),
+                    Center(
+                      child: Column(
+                        children: [
+                          SleekCircularSlider(
+                            appearance: CircularSliderAppearance(
+                              customColors: CustomSliderColors(
+                                trackColor: Colors.white,
+                                dotColor: Colors.white,
+                                progressBarColor: Colors.white,
+                              ),
+                              startAngle: 0,
+                              angleRange: 360,
+                              size: 250,
+                              customWidths: CustomSliderWidths(
+                                  progressBarWidth: 0, handlerSize: 0),
                             ),
-                            startAngle: 0,
-                            angleRange: 360,
-                            size: 250,
-                            customWidths: CustomSliderWidths(
-                                progressBarWidth: 0, handlerSize: 0),
-                          ),
-                          initialValue: temperature,
-                          onChangeEnd: (_value) => _value,
-                          innerWidget: (percentage) => Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Center(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  shape: BoxShape.circle,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(0.1),
-                                      blurRadius: 7,
-                                      spreadRadius: 8,
-                                    ),
-                                  ],
-                                ),
+                            initialValue: temperature,
+                            onChangeEnd: (_value) => _value,
+                            innerWidget: (percentage) => Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Center(
                                 child: Container(
-                                  margin: EdgeInsets.all(8),
                                   decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Colors.blueGrey,
-                                      width: 1,
-                                    ),
-                                    shape: BoxShape.circle,
                                     color: Colors.white,
+                                    shape: BoxShape.circle,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.1),
+                                        blurRadius: 7,
+                                        spreadRadius: 8,
+                                      ),
+                                    ],
                                   ),
-                                  child: Center(
-                                    child: Column(
-                                      children: [
-                                        SizedBox(
-                                          height: 40,
-                                        ),
-                                        Text(
-                                          '$temp ° C',
-                                          style: TextStyle(
-                                            fontSize: 12 + (22 * 683 / size.height),
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
+                                  child: Container(
+                                    margin: EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Colors.blueGrey,
+                                        width: 1,
+                                      ),
+                                      shape: BoxShape.circle,
+                                      color: Colors.white,
+                                    ),
+                                    child: Center(
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            height: 40,
                                           ),
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        if (temp >= 25&&rain ==0)
-                                          CircleAvatar(
-                                              radius: 50,
-                                              backgroundImage: AssetImage(
-                                                  'assets/images/weather.jpg')),
-                                        if (temp < 25&&rain==0)
-                                          CircleAvatar(
-                                              radius: 50,
-                                              backgroundImage: AssetImage(
-                                                  'assets/images/weather1.png')),
-                                        if (rain == 1)
-                                          CircleAvatar(
-                                              radius: 50,
-                                              backgroundImage: AssetImage(
-                                                  'assets/images/weather2.png'))
-                                      ],
+                                          Text(
+                                            '$temp ° C',
+                                            style: TextStyle(
+                                              fontSize: 12 + (22 * 683 / size.height),
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          if (temp >= 25&&rain ==0)
+                                            CircleAvatar(
+                                                radius: 50,
+                                                backgroundImage: AssetImage(
+                                                    'assets/images/weather.jpg')),
+                                          if (temp < 25&&rain==0)
+                                            CircleAvatar(
+                                                radius: 50,
+                                                backgroundImage: AssetImage(
+                                                    'assets/images/weather1.png')),
+                                          if (rain == 1)
+                                            CircleAvatar(
+                                                radius: 50,
+                                                backgroundImage: AssetImage(
+                                                    'assets/images/weather2.png'))
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        SleekCircularSlider(
-                          appearance: CircularSliderAppearance(
-                            customColors: CustomSliderColors(
-                              trackColor: Colors.white,
-                              dotColor: Colors.white,
-                              progressBarColor: Colors.white,
-                            ),
-                            startAngle: 0,
-                            angleRange: 360,
-                            size: 250,
-                            customWidths: CustomSliderWidths(
-                                progressBarWidth: 0, handlerSize: 0),
+                          SizedBox(
+                            height: 30,
                           ),
-                          min: 0,
-                          max: 30,
-                          initialValue: temperature,
-                          onChangeEnd: (_value) => _value,
-                          innerWidget: (percentage) => Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Center(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  shape: BoxShape.circle,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(0.1),
-                                      blurRadius: 7,
-                                      spreadRadius: 8,
-                                    ),
-                                  ],
-                                ),
+                          SleekCircularSlider(
+                            appearance: CircularSliderAppearance(
+                              customColors: CustomSliderColors(
+                                trackColor: Colors.white,
+                                dotColor: Colors.white,
+                                progressBarColor: Colors.white,
+                              ),
+                              startAngle: 0,
+                              angleRange: 360,
+                              size: 250,
+                              customWidths: CustomSliderWidths(
+                                  progressBarWidth: 0, handlerSize: 0),
+                            ),
+                            min: 0,
+                            max: 30,
+                            initialValue: temperature,
+                            onChangeEnd: (_value) => _value,
+                            innerWidget: (percentage) => Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Center(
                                 child: Container(
-                                  margin: EdgeInsets.all(8),
                                   decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Colors.blueGrey,
-                                      width: 1,
-                                    ),
-                                    shape: BoxShape.circle,
                                     color: Colors.white,
+                                    shape: BoxShape.circle,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.1),
+                                        blurRadius: 7,
+                                        spreadRadius: 8,
+                                      ),
+                                    ],
                                   ),
-                                  child: Center(
-                                    child: Column(
-                                      children: [
-                                        SizedBox(
-                                          height: 75,
-                                        ),
-                                        Text(
-                                          '$hum %',
-                                          style: TextStyle(
-                                            fontSize: 12 + (22 * 683 / size.height),
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
+                                  child: Container(
+                                    margin: EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Colors.blueGrey,
+                                        width: 1,
+                                      ),
+                                      shape: BoxShape.circle,
+                                      color: Colors.white,
+                                    ),
+                                    child: Center(
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            height: 75,
                                           ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Text(
-                                          'Humidity',
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            color: Colors.black,
+                                          Text(
+                                            '$hum %',
+                                            style: TextStyle(
+                                              fontSize: 12 + (22 * 683 / size.height),
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            'Humidity',
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
+                        ],
+                      ),
 
-                  ),
-                ])
+                    ),
+                  ]),
+                )
             ));
       },
     );
