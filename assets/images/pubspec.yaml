@@ -1,4 +1,4 @@
-name: smart_city
+name: weather_tutorial
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -18,68 +18,22 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.8.4<3.0.0"
+  sdk: ">=2.8.4 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
 
-  hexcolor:
-  sqflite:
-  intl:
-  conditional_builder:
-  path_provider: any
-  bloc: ^7.0.0
-  flutter_bloc:
-  dio:
-  shared_preferences:
-  webview_flutter:
-  smooth_page_indicator:
-  carousel_slider:
-  fluttertoast: ^7.1.8
-  http: ^0.12.2
-  jumping_bottom_nav_bar: ^0.1.0
-  material_design_icons_flutter: ^4.0.5955
-  curved_navigation_bar: ^1.0.3
-  rolling_switch: ^0.0.2
-  sliding_switch: ^1.0.0
-  email_validator:
-  flutter_pw_validator:
-  pin_code_fields:
-  pull_to_refresh:
-  restart_app:
-  internet_connection_checker:
-  overlay_support:
-  flutter_local_notifications:
-  connectivity_plus:
-  sleek_circular_slider: ^2.0.1
-  flutter_switch: ^0.3.2
-  ndialog:
-  syncfusion_flutter_gauges: ^19.1.65
-  flutter_zoom_drawer: ^3.0.1
-  mqtt_client:
-  flutter_svg:
-  cloud_firestore:
-  firebase_messaging:
-  firebase_core:
-  onesignal_flutter: ^3.3.2
-  flutter_glow: ^0.2.0
-  weather_icons:
-  flutter_staggered_grid_view: ^0.3.0
-
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons:
+  cupertino_icons: ^1.0.2
+  flutter_glow: ^0.2.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons:
-flutter_icons:
-    android: true
-    image_path: "assets/images/icon.png"
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -93,15 +47,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/
-  fonts:
-    - family: IconBroken
-      fonts:
-        - asset: assets/fonts/icons.ttf
-    - family: FunIcons
-      fonts:
-          - asset: assets/fonts/FunIcons.ttf
-
+  - assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -128,8 +74,3 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-flutter_native_splash:
-  color: "#EDBB99"
-  image: assets/images/7.png
-  android: true
-  ios: true

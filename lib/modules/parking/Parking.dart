@@ -52,7 +52,7 @@ class _ParkingState extends State<Parking> {
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.blueGrey,
-              title: Text('${widget.model.toString()} '),
+              title: Text('1 '),
             ),
             body: SmartRefresher(
 

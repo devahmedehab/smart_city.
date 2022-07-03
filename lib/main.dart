@@ -1,3 +1,4 @@
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -54,6 +55,7 @@ Future main() async {
   await Firebase.initializeApp();
 
   runApp(MyApp(
+
     isDark: isDark,
     startWidget: widget,
   ));
@@ -78,6 +80,8 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    OneSignal.shared.setLogLevel(OSLogLevel.debug, OSLogLevel.none);
+    OneSignal.shared.setAppId("c6218e1e-82ad-420b-bcad-3d626af97d6d");
   }
 
   Widget build(BuildContext context) {
@@ -88,6 +92,12 @@ class _MyAppState extends State<MyApp> {
       providers: [
         BlocProvider(
           create: (BuildContext context) => AppCubit()
+            ..changeAppMode(
+              fromShared: widget.isDark,
+            ),
+        ),
+        BlocProvider(
+          create: (BuildContext context) => HomeCubit()
             ..changeAppMode(
               fromShared: widget.isDark,
             ),
@@ -108,7 +118,9 @@ class _MyAppState extends State<MyApp> {
                 return OverlaySupport.global(
                   child: MaterialApp(
                     debugShowCheckedModeBanner: false,
-                    theme: ThemeData(primarySwatch: Colors.blueGrey),
+                    theme: ThemeData(primarySwatch: Colors.blue,
+                   // primaryColor: Colors.blue
+                    ),
                     darkTheme: ThemeData.dark(),
                     themeMode: AppCubit.get(context).isDark
                         ? ThemeMode.light

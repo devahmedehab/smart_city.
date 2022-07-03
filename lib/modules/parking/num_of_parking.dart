@@ -13,7 +13,7 @@ class NumOfParking extends StatelessWidget {
 
     appBar: AppBar(
       title: Text('$city Parking '),
-      backgroundColor: Colors.blueGrey,
+
     ),
     body:SingleChildScrollView(
       child: Column(
@@ -43,7 +43,7 @@ Widget buildChatItem(BuildContext context,index,) =>
       navigateTo(context, Parking(model: 'Parking ${index+1}'));
     },
     child:Card(
-      color: Colors.blueGrey[300],
+      color: Colors.blue,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),

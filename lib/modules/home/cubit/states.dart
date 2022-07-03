@@ -18,3 +18,6 @@ class ParkingErrorHomeState extends HomeStates {
 }
 
 class GetHomeState extends HomeStates{}
+class AppChangeBottomSheetState extends HomeStates{}
+
+class AppChangeModeState extends HomeStates{}

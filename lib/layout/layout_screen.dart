@@ -7,7 +7,6 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:smart_city/layout/cubit/cubit.dart';
 import 'package:smart_city/layout/cubit/state.dart';
-import 'package:smart_city/modules/About_us/about_us_screen.dart';
 import 'package:smart_city/modules/profile/profile.dart';
 import 'package:smart_city/modules/setting/settings_screen.dart';
 import 'package:smart_city/shared/components/components.dart';
@@ -19,11 +18,13 @@ class LayoutScreen extends StatefulWidget {
   @override
   _LayoutScreenState createState() => _LayoutScreenState();
 }
+
 final ZoomDrawerController z = ZoomDrawerController();
+
 class _LayoutScreenState extends State<LayoutScreen> {
   Color color = ThemeMode.light != null ? HexColor('333739') : Colors.white;
 
-  bool _hasInternet =false;
+  bool _hasInternet = false;
 
   ConnectivityResult result = ConnectivityResult.none;
 
@@ -33,46 +34,37 @@ class _LayoutScreenState extends State<LayoutScreen> {
 
   var nameController = TextEditingController();
 
-
-  void status = showToast(
-      text: 'Connecting...',
-      state: ToastStates.SUCCESS);
-  Connectivity  _connectivity =Connectivity();
-
+  void status = showToast(text: 'Connecting...', state: ToastStates.SUCCESS);
+  Connectivity _connectivity = Connectivity();
 
   @override
   void initState() {
     checkRealtimeConnection();
-    super.initState(
-
-    );
+    super.initState();
   }
+
   @override
   void dispose() {
     _streamSubscription.cancel();
     super.dispose();
   }
-StreamSubscription _streamSubscription;
 
-  void checkRealtimeConnection()async{
+  StreamSubscription _streamSubscription;
+
+  void checkRealtimeConnection() async {
     _streamSubscription = _connectivity.onConnectivityChanged.listen((event) {
-      if(event ==ConnectivityResult.mobile){
-        status = showToast(
-            text: 'Connection Success',
-            state: ToastStates.SUCCESS);
-      }else if(event ==ConnectivityResult.wifi){
-        status = showToast(
-            text: 'Connection Success',
-            state: ToastStates.SUCCESS);
-      }else{
-        status=showToast(
-            text: 'Not Connected',
-            state: ToastStates.SUCCESS);
+      if (event == ConnectivityResult.mobile) {
+        status =
+            showToast(text: 'Connection Success', state: ToastStates.SUCCESS);
+      } else if (event == ConnectivityResult.wifi) {
+        status =
+            showToast(text: 'Connection Success', state: ToastStates.SUCCESS);
+      } else {
+        status = showToast(text: 'Not Connected', state: ToastStates.SUCCESS);
       }
-      setState((){});
+      setState(() {});
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -86,17 +78,17 @@ StreamSubscription _streamSubscription;
       return ZoomDrawer(
         controller: z,
         borderRadius: 20,
-       // style: DrawerStyle.defaultStyle,
-        menuBackgroundColor: Colors.blueGrey[300],
+        // style: DrawerStyle.defaultStyle,
+        menuBackgroundColor: Colors.blue,
         showShadow: true,
         angle: 0.0,
-        drawerShadowsBackgroundColor: Colors.blueGrey,
-        slideWidth: MediaQuery.of(context).size.width *.95,
+        drawerShadowsBackgroundColor: kBlueColor,
+        slideWidth: MediaQuery.of(context).size.width * .95,
         menuScreen: Container(
           child: ListView(
             children: [
               DrawerHeader(
-                  decoration: BoxDecoration(color: Colors.blueGrey),
+                  decoration: BoxDecoration(color: Colors.blue),
                   child: InkWell(
                     child: Row(
                       children: [
@@ -106,19 +98,18 @@ StreamSubscription _streamSubscription;
                           child: CircleAvatar(
                               radius: 30,
                               backgroundImage:
-                              AssetImage('assets/images/onboard_1.png')),
+                                  AssetImage('assets/images/onboard_1.png')),
                         ),
                         SizedBox(
                           width: 10,
                         ),
                         Container(
-                          width: 200,
+                          width: 190,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                  nameController.text,
+                              Text(nameController.text,
                                   style: TextStyle(
                                     fontSize: 20,
                                     color: Colors.black,
@@ -140,20 +131,19 @@ StreamSubscription _streamSubscription;
                         ),
                       ],
                     ),
-                    onTap: () async{
-                      _hasInternet=await InternetConnectionChecker().hasConnection ;
+                    onTap: () async {
+                      _hasInternet =
+                          await InternetConnectionChecker().hasConnection;
 
                       if (_hasInternet) {
                         navigateTo(
                           context,
                           ProfileScreen(),
                         );
-                      }
-
-                      else{
+                      } else {
                         showToast(
-                            text: 'Please Check Your Network Connection', state: ToastStates.ERROR
-                        );
+                            text: 'Please Check Your Network Connection',
+                            state: ToastStates.ERROR);
                       }
                     },
                   )),
@@ -168,20 +158,18 @@ StreamSubscription _streamSubscription;
               SizedBox(
                 height: 15,
               ),
-              buildListTile("Profile", Icons.account_box_outlined, () async{
-                _hasInternet=await InternetConnectionChecker().hasConnection ;
+              buildListTile("Profile", Icons.account_box_outlined, () async {
+                _hasInternet = await InternetConnectionChecker().hasConnection;
 
                 if (_hasInternet) {
                   navigateTo(
                     context,
                     ProfileScreen(),
                   );
-
-                }
-                else{
+                } else {
                   showToast(
-                      text: 'Please Check Your Network Connection', state: ToastStates.ERROR
-                  );
+                      text: 'Please Check Your Network Connection',
+                      state: ToastStates.ERROR);
                 }
               }),
               SizedBox(
@@ -207,7 +195,7 @@ StreamSubscription _streamSubscription;
             ],
           ),
         ),
-        mainScreen:Scaffold(
+        mainScreen: Scaffold(
           appBar: AppBar(
             title: Text('Smart City'),
             leading: IconButton(
@@ -220,39 +208,34 @@ StreamSubscription _streamSubscription;
           ),
           body: SmartRefresher(
             child: cubit.bottomScreen[cubit.currentIndex],
-
-            onRefresh:() async {
+            onRefresh: () async {
               await Future.delayed(Duration(microseconds: 500));
               _refreshController.refreshFailed();
 
+              _hasInternet = await InternetConnectionChecker().hasConnection;
+              final text = _hasInternet
+                  ? 'Network Connection Success'
+                  : 'Network Connection Failed';
+              result = await Connectivity().checkConnectivity();
 
-              _hasInternet=await InternetConnectionChecker().hasConnection ;
-              final text = _hasInternet ? 'Network Connection Success': 'Network Connection Failed';
-              result= await Connectivity().checkConnectivity();
-
-              if(_hasInternet){
+              if (_hasInternet) {
                 ParkingCubit.get(context).getUserData();
-                showToast(
-                    text: text,
-                    state: ToastStates.SUCCESS
-                );
-              }
-              else {
-                showToast(
-                    text: text,
-                    state: ToastStates.SUCCESS
-                );
-
+                showToast(text: text, state: ToastStates.SUCCESS);
+              } else {
+                showToast(text: text, state: ToastStates.SUCCESS);
               }
             },
-            onLoading:() async {
+            onLoading: () async {
               await Future.delayed(Duration(microseconds: 500));
               _refreshController.refreshFailed();
             },
             enablePullUp: true,
             controller: _refreshController,
           ),
-          bottomNavigationBar: BottomNavigationBar(
+
+          //
+
+           bottomNavigationBar: BottomNavigationBar(
             onTap: (index) {
               cubit.changeBottom(index);
 

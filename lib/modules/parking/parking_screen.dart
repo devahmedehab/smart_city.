@@ -31,12 +31,10 @@ class ParkingScreen extends StatelessWidget {
           Container(
 
               child: Padding(
-                padding: EdgeInsets.only(left:size.height*.0246,right:size.height*.001 ),
+                padding: EdgeInsets.only(left:size.height*.0190,right:5 ,top: size.width*.03),
                 child: Row(
                   children: [
-                   /* SizedBox(
-                      width: 12,
-                    ),*/
+
                     InkWell(
                       onTap: () async {
                         showSearch(
@@ -60,7 +58,7 @@ class ParkingScreen extends StatelessWidget {
                         child: Row(
                           children: [
                             Padding(
-                              padding:  EdgeInsets.all(8.0),
+                              padding:  EdgeInsets.all(10.0),
                               child: Text(
                                 'Search ...',
                                 style: TextStyle(
@@ -77,7 +75,7 @@ class ParkingScreen extends StatelessWidget {
                                 child: IconButton(
                                   icon: Icon(
                                     Icons.search,
-                                    color: Colors.grey[500],
+                                    color: Colors.blue,
                                   ),
                                   onPressed: () async {
                                     showSearch(
@@ -134,7 +132,7 @@ Widget buildChatItem(
               ));
         },
         child:Padding(
-        padding: EdgeInsets.only(left: 16,right: 16),
+        padding: EdgeInsets.only(left: 10,right: 10),
           child: Card(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
@@ -142,7 +140,7 @@ Widget buildChatItem(
                   topRight: Radius.circular(50),
                   bottomLeft: Radius.circular(10),
                 )),
-            color: Colors.blueGrey[300],
+            color: Colors.blue,
             child: Padding(
               padding: const EdgeInsets.only(top: 12,left: 10,bottom: 12),
               child: Container(
@@ -185,7 +183,7 @@ Widget buildChatItem(
                           Row(
                             children: [
                               Text(
-                                'Number Of Parking : 10',
+                                'Num of Parking: 10',
                               ),
                               Spacer(),
                               Row(
