@@ -92,10 +92,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Container(
 
                       decoration: BoxDecoration(
-
-
+                        color: kBgColor,
                         borderRadius: BorderRadius.circular(20),
-                        color:color,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 8,
+                            offset: Offset(3, 3),
+                          ),
+                          BoxShadow(
+                            color: Colors.white,
+                            blurRadius: 0,
+                            offset: Offset(-3, -3),
+                          ),
+                        ],
                       ),
                       padding: const EdgeInsets.all(8),
                       child: Center(
@@ -105,14 +115,14 @@ class _HomeScreenState extends State<HomeScreen> {
                               'Garage',
                               style: TextStyle(
                                 fontSize: 20,
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             SizedBox(
                               height: 20,
                             ),
-                            Image(image: AssetImage('assets/images/icons8-bed-96.png'),)
+                            Image(image: AssetImage('assets/images/garage.png'),)
                           ],
                         ),
                       ),
@@ -127,8 +137,20 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: SingleChildScrollView(
                     child: Container(
                       decoration: BoxDecoration(
+                        color: kBgColor,
                         borderRadius: BorderRadius.circular(20),
-                       // color: color,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 8,
+                            offset: Offset(3, 3),
+                          ),
+                          BoxShadow(
+                            color: Colors.white,
+                            blurRadius: 0,
+                            offset: Offset(-3, -3),
+                          ),
+                        ],
                       ),
                       padding: const EdgeInsets.all(8),
                       child: Column(
@@ -137,7 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             'Living Room',
                             style: TextStyle(
                               fontSize: 20,
-                              color: Colors.white,
+                              color: Colors.black,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -156,9 +178,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 SingleChildScrollView(
                   child: InkWell(
                     child: Container(
-                      decoration: BoxDecoration(
+                      decoration:  BoxDecoration(
+                        color: kBgColor,
                         borderRadius: BorderRadius.circular(20),
-                        color: color,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 8,
+                            offset: Offset(3, 3),
+                          ),
+                          BoxShadow(
+                            color: Colors.white,
+                            blurRadius: 0,
+                            offset: Offset(-3, -3),
+                          ),
+                        ],
                       ),
                       padding: const EdgeInsets.all(8),
                       child: Column(
@@ -168,17 +202,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                              color: Colors.black,
                             ),
                           ),
                           SizedBox(
                             height: 20,
                           ),
-                          Icon(
-                            Icons.coffee_outlined,
-                            size: 100,
-                            color: Colors.white,
-                          )
+                          Image(image: AssetImage('assets/images/kitchen.png'))
                         ],
                       ),
                     ),
@@ -191,8 +221,20 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: InkWell(
                     child: Container(
                       decoration: BoxDecoration(
+                        color: kBgColor,
                         borderRadius: BorderRadius.circular(20),
-                        color: color,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 8,
+                            offset: Offset(3, 3),
+                          ),
+                          BoxShadow(
+                            color: Colors.white,
+                            blurRadius: 0,
+                            offset: Offset(-3, -3),
+                          ),
+                        ],
                       ),
                       padding: const EdgeInsets.all(8),
                       child: Column(
@@ -201,18 +243,14 @@ class _HomeScreenState extends State<HomeScreen> {
                             'Bathroom',
                             style: TextStyle(
                               fontSize: 20,
-                              color: Colors.white,
+                              color: Colors.black,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           SizedBox(
                             height: 20,
                           ),
-                          Icon(
-                            Icons.bathtub_outlined,
-                            size: 100,
-                            color: Colors.white,
-                          )
+                          Image(image: AssetImage('assets/images/bathroom.png'))
                         ],
                       ),
                     ),
@@ -225,8 +263,20 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: InkWell(
                     child: Container(
                       decoration: BoxDecoration(
+                        color: kBgColor,
                         borderRadius: BorderRadius.circular(20),
-                       color: Colors.blue,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 8,
+                            offset: Offset(3, 3),
+                          ),
+                          BoxShadow(
+                            color: Colors.white,
+                            blurRadius: 0,
+                            offset: Offset(-3, -3),
+                          ),
+                        ],
                       ),
                       padding: const EdgeInsets.all(8),
                       child: Column(
@@ -236,7 +286,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                              color: Colors.black,
                             ),
                           ),
                           SizedBox(
@@ -252,26 +302,48 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 SingleChildScrollView(
-
+                  primary: true,
                   child: InkWell(
 
 
-                    child: HomeCard(
+                    child: Container(
 
-
-
-                      size: MediaQuery.of(context).size,
-
-                      icon:  IconButton(
-                        onPressed: (){},
-                        icon: Icon(Icons.lightbulb_outline),
-
+                      decoration: BoxDecoration(
+                        color: kBgColor,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 8,
+                            offset: Offset(3, 3),
+                          ),
+                          BoxShadow(
+                            color: Colors.white,
+                            blurRadius: 0,
+                            offset: Offset(-3, -3),
+                          ),
+                        ],
                       ),
-                      image:  AssetImage('assets/images/icons8-bed-96.png'),
+                      padding: const EdgeInsets.all(8),
+                      child: Center(
+                        child: Column(
+                          children: [
+                            Text(
+                              'Roof',
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Image(image: AssetImage('assets/images/stairs.png'),)
+                          ],
+                        ),
+                      ),
 
-                      title: "Lightning",
-                      statusOn: "OPEN",
-                      statusOff: "LOCKED",
                     ),
                     onTap: (){
                       navigateTo(context, Roof());
