@@ -40,6 +40,7 @@ String carStr='';
 String carInt='';
 String oldPassword='';
 String newPassword='';
+List leds;
 
  final String oneSignalId= "c6218e1e-82ad-420b-bcad-3d626af97d6d";
 
@@ -53,5 +54,10 @@ var temp;
 var gas;
 var hum;
 var rain;
+var led1;
+var led2;
+var led3;
+var led4;
+var led5;
 
 

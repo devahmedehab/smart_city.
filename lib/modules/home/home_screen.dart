@@ -28,8 +28,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(
-    BuildContext context,
-  ) {
+      BuildContext context,
+      ) {
     int selectedCard = -1;
     RefreshController _refreshController = RefreshController();
     bool _hasInternet = false;
@@ -79,283 +79,282 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 child: GridView.extent(
 
-              padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 7),
-              crossAxisSpacing: 30,
-              mainAxisSpacing: 30,
-              maxCrossAxisExtent: 300.0,
-              children: <Widget>[
-                SingleChildScrollView(
-                  primary: true,
-                  child: InkWell(
+                  padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 7),
+                  crossAxisSpacing: 30,
+                  mainAxisSpacing: 30,
+                  maxCrossAxisExtent: 300.0,
+                  children: <Widget>[
+                    SingleChildScrollView(
+                      primary: true,
+                      child: InkWell(
 
 
-                    child: Container(
+                        child: Container(
 
-                      decoration: BoxDecoration(
-                        color: kBgColor,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 8,
-                            offset: Offset(3, 3),
-                          ),
-                          BoxShadow(
-                            color: Colors.white,
-                            blurRadius: 0,
-                            offset: Offset(-3, -3),
-                          ),
-                        ],
-                      ),
-                      padding: const EdgeInsets.all(8),
-                      child: Center(
-                        child: Column(
-                          children: [
-                            Text(
-                              'Garage',
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
+                          decoration: BoxDecoration(
+                            color: kBgColor,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 8,
+                                offset: Offset(3, 3),
                               ),
+                              BoxShadow(
+                                color: Colors.white,
+                                blurRadius: 0,
+                                offset: Offset(-3, -3),
+                              ),
+                            ],
+                          ),
+                          padding: const EdgeInsets.all(8),
+                          child: Center(
+                            child: Column(
+                              children: [
+                                Text(
+                                  'Garage',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Image(image: AssetImage('assets/images/garage.png'),)
+                              ],
                             ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Image(image: AssetImage('assets/images/garage.png'),)
-                          ],
+                          ),
+
+                        ),
+                        onTap: (){
+                          navigateTo(context, Garage());
+                        },
+                      ),
+                    ),
+                    InkWell(
+                      child: SingleChildScrollView(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: kBgColor,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 8,
+                                offset: Offset(3, 3),
+                              ),
+                              BoxShadow(
+                                color: Colors.white,
+                                blurRadius: 0,
+                                offset: Offset(-3, -3),
+                              ),
+                            ],
+                          ),
+                          padding: const EdgeInsets.all(8),
+                          child: Column(
+                            children: [
+                              Text(
+                                'Living Room',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Image(image: AssetImage('assets/images/Webp.net-resizeimage (1).png'))
+                            ],
+                          ),
                         ),
                       ),
-
+                      onTap: (){
+                        navigateTo(context, LivingRoom());
+                      },
                     ),
-                    onTap: (){
-                      navigateTo(context, Garage());
-                    },
-                  ),
-                ),
-                InkWell(
-                  child: SingleChildScrollView(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: kBgColor,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 8,
-                            offset: Offset(3, 3),
-                          ),
-                          BoxShadow(
-                            color: Colors.white,
-                            blurRadius: 0,
-                            offset: Offset(-3, -3),
-                          ),
-                        ],
-                      ),
-                      padding: const EdgeInsets.all(8),
-                      child: Column(
-                        children: [
-                          Text(
-                            'Living Room',
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Image(image: AssetImage('assets/images/Webp.net-resizeimage (1).png'))
-                        ],
-                      ),
-                    ),
-                  ),
-                  onTap: (){
-                    navigateTo(context, LivingRoom());
-                  },
-                ),
-                SingleChildScrollView(
-                  child: InkWell(
-                    child: Container(
-                      decoration:  BoxDecoration(
-                        color: kBgColor,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 8,
-                            offset: Offset(3, 3),
-                          ),
-                          BoxShadow(
-                            color: Colors.white,
-                            blurRadius: 0,
-                            offset: Offset(-3, -3),
-                          ),
-                        ],
-                      ),
-                      padding: const EdgeInsets.all(8),
-                      child: Column(
-                        children: [
-                          Text(
-                            'Kitchen',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Image(image: AssetImage('assets/images/kitchen.png'))
-                        ],
-                      ),
-                    ),
-                    onTap: (){
-                      navigateTo(context, Kitchen());
-                    },
-                  ),
-                ),
-                SingleChildScrollView(
-                  child: InkWell(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: kBgColor,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 8,
-                            offset: Offset(3, 3),
-                          ),
-                          BoxShadow(
-                            color: Colors.white,
-                            blurRadius: 0,
-                            offset: Offset(-3, -3),
-                          ),
-                        ],
-                      ),
-                      padding: const EdgeInsets.all(8),
-                      child: Column(
-                        children: [
-                          Text(
-                            'Bathroom',
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Image(image: AssetImage('assets/images/bathroom.png'))
-                        ],
-                      ),
-                    ),
-                    onTap: (){
-                      navigateTo(context, BathRoom());
-                    },
-                  ),
-                ),
-                SingleChildScrollView(
-                  child: InkWell(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: kBgColor,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 8,
-                            offset: Offset(3, 3),
-                          ),
-                          BoxShadow(
-                            color: Colors.white,
-                            blurRadius: 0,
-                            offset: Offset(-3, -3),
-                          ),
-                        ],
-                      ),
-                      padding: const EdgeInsets.all(8),
-                      child: Column(
-                        children: [
-                          Text(
-                            'Bed Room',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                         Image(image: AssetImage('assets/images/Webp.net-resizeimage.png'))
-                        ],
-                      ),
-                    ),
-                    onTap: (){
-                      navigateTo(context, BedRoom());
-                    },
-                  ),
-                ),
-                SingleChildScrollView(
-                  primary: true,
-                  child: InkWell(
-
-
-                    child: Container(
-
-                      decoration: BoxDecoration(
-                        color: kBgColor,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 8,
-                            offset: Offset(3, 3),
-                          ),
-                          BoxShadow(
-                            color: Colors.white,
-                            blurRadius: 0,
-                            offset: Offset(-3, -3),
-                          ),
-                        ],
-                      ),
-                      padding: const EdgeInsets.all(8),
-                      child: Center(
-                        child: Column(
-                          children: [
-                            Text(
-                              'Roof',
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
+                    SingleChildScrollView(
+                      child: InkWell(
+                        child: Container(
+                          decoration:  BoxDecoration(
+                            color: kBgColor,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 8,
+                                offset: Offset(3, 3),
                               ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Image(image: AssetImage('assets/images/stairs.png'),)
-                          ],
+                              BoxShadow(
+                                color: Colors.white,
+                                blurRadius: 0,
+                                offset: Offset(-3, -3),
+                              ),
+                            ],
+                          ),
+                          padding: const EdgeInsets.all(8),
+                          child: Column(
+                            children: [
+                              Text(
+                                'Kitchen',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Image(image: AssetImage('assets/images/kitchen.png'))
+                            ],
+                          ),
                         ),
+                        onTap: (){
+                          navigateTo(context, Kitchen());
+                        },
                       ),
-
                     ),
-                    onTap: (){
-                      navigateTo(context, Roof());
-                    },
-                  ),
-                ),
-              ],
-            )),
+                    SingleChildScrollView(
+                      child: InkWell(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: kBgColor,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 8,
+                                offset: Offset(3, 3),
+                              ),
+                              BoxShadow(
+                                color: Colors.white,
+                                blurRadius: 0,
+                                offset: Offset(-3, -3),
+                              ),
+                            ],
+                          ),
+                          padding: const EdgeInsets.all(8),
+                          child: Column(
+                            children: [
+                              Text(
+                                'Bathroom',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Image(image: AssetImage('assets/images/bathroom.png'))
+                            ],
+                          ),
+                        ),
+                        onTap: (){
+                          navigateTo(context, BathRoom());
+                        },
+                      ),
+                    ),
+                    SingleChildScrollView(
+                      child: InkWell(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: kBgColor,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 8,
+                                offset: Offset(3, 3),
+                              ),
+                              BoxShadow(
+                                color: Colors.white,
+                                blurRadius: 0,
+                                offset: Offset(-3, -3),
+                              ),
+                            ],
+                          ),
+                          padding: const EdgeInsets.all(8),
+                          child: Column(
+                            children: [
+                              Text(
+                                'Bed Room',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Image(image: AssetImage('assets/images/Webp.net-resizeimage.png'))
+                            ],
+                          ),
+                        ),
+                        onTap: (){
+                          navigateTo(context, BedRoom());
+                        },
+                      ),
+                    ),
+                    SingleChildScrollView(
+                      primary: true,
+                      child: InkWell(
+
+
+                        child: Container(
+
+                          decoration: BoxDecoration(
+                            color: kBgColor,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 8,
+                                offset: Offset(3, 3),
+                              ),
+                              BoxShadow(
+                                color: Colors.white,
+                                blurRadius: 0,
+                                offset: Offset(-3, -3),
+                              ),
+                            ],
+                          ),
+                          padding: const EdgeInsets.all(8),
+                          child: Center(
+                            child: Column(
+                              children: [
+                                Text(
+                                  'Roof',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Image(image: AssetImage('assets/images/stairs.png'),)
+                              ],
+                            ),
+                          ),
+
+                        ),
+                        onTap: (){
+                          navigateTo(context, Roof());
+                        },
+                      ),
+                    ),
+                  ],
+                )),
           ),
         );
       },
     );
   }
 }
-

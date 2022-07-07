@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_city/models/home_model.dart';
+import 'package:smart_city/models/light_model.dart';
 import 'package:smart_city/modules/home/cubit/states.dart';
 import 'package:smart_city/shared/components/constants.dart';
 import 'package:smart_city/shared/network/cache_helper.dart';
@@ -11,6 +13,7 @@ class HomeCubit extends Cubit<HomeStates> {
 
 
   static HomeCubit get(context) => BlocProvider.of(context);
+
 
   bool isDark =false;
 
@@ -36,7 +39,9 @@ class HomeCubit extends Cubit<HomeStates> {
   HomeModel homeModel;
 
 
-    Future getHomeData() async{
+
+
+  Future getHomeData() async{
     emit(ParkingLoadingHomeState());
 
    await DioHelper.getData(
@@ -51,6 +56,68 @@ class HomeCubit extends Cubit<HomeStates> {
        emit(ParkingErrorHomeState(error.toString()));
     });
   }
+    LightModel lightsModel;
+
+  Future getLightsData() async{
+    emit(HomeGetLoadingLightsState());
+
+    await DioHelper.getData(
+      url: lights,
+      token: token,
+
+    ).then((value){
+      led1=lightsModel.data.led1;
+      led2=lightsModel.data.led2;
+      led3=lightsModel.data.led3;
+      led4=lightsModel.data.led4;
+
+      lightsModel = LightModel.fromJson(value.data);
+
+      emit(HomeGetSuccessLightsState(lightsModel));
+
+
+    }).catchError((error) {
+      print(error.toString());
+      emit(HomeGetErrorLightsState(error.toString()));
+    });
+  }
+  Future postLightData ({
+     int led1 ,
+     int led2 ,
+     int led3 ,
+     int led4 ,
+
+
+  })async
+
+  {
+    emit(HomePostLoadingLightsState());
+     getLightsData();
+    await DioHelper.postData(
+      url: lights,
+      data:{
+        'led1':led1,
+        'led2':led2,
+        'led3':led3,
+        'led4':led4,
+      },
+    ).then((value) {
+     // lightsModel= LightModel.fromJson(value.data);
+
+      print(value.data);
+
+
+
+      emit(HomePostSuccessLightsState(lightsModel));
+    }).catchError((error){
+      print(error.toString());
+      emit(HomePostErrorLightsState(error.toString()));
+    });
+
+
+  }
+
+
 
 }
 

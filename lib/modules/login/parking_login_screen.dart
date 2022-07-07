@@ -6,10 +6,12 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:smart_city/layout/layout_screen.dart';
+import 'package:smart_city/models/login_model.dart';
 import 'package:smart_city/modules/login/cubit/login_cubit.dart';
 import 'package:smart_city/modules/login/cubit/login_states.dart';
 import 'package:smart_city/modules/password/forget_password.dart';
 import 'package:smart_city/modules/register/register_screen.dart';
+import 'package:smart_city/modules/verify/verify_email.dart';
 import 'package:smart_city/shared/components/components.dart';
 import 'package:smart_city/shared/components/constants.dart';
 import 'package:smart_city/shared/network/cache_helper.dart';
@@ -35,10 +37,7 @@ class _ParkingLoginScreenState extends State<ParkingLoginScreen> {
     final color = _hasInternet ? Colors.green :Colors.red;
     final text = _hasInternet ? 'Internet': 'No Internet';
     var emailController = TextEditingController();
-    var nameController = TextEditingController();
-    var carIntController = TextEditingController();
-    var carStrController = TextEditingController();
-    var phoneController = TextEditingController();;
+
 
 
 
@@ -49,7 +48,7 @@ class _ParkingLoginScreenState extends State<ParkingLoginScreen> {
     }
 
     var passwordController = TextEditingController();
-
+    ParkingLoginModel verify;
     return BlocProvider(
       create: (BuildContext context)=> ParkingLoginCubit(),
       child: BlocConsumer<ParkingLoginCubit, ParkingLoginStates>(
@@ -210,14 +209,19 @@ class _ParkingLoginScreenState extends State<ParkingLoginScreen> {
 
                                 if(_hasInternet){
 
-                                  if(formKey.currentState.validate())
-                                  {
-                                    ParkingLoginCubit.get(context).userLogin(
-                                      email: emailController.text,
-                                      password: passwordController.text,
-                                    );
 
-                                  }
+                                    if(formKey.currentState.validate())
+                                    {
+                                      ParkingLoginCubit.get(context).userLogin(
+                                        email: emailController.text,
+                                        password: passwordController.text,);
+                                      if(verify.message== 'Your email is not verified') {
+                                        navigateAndFinish(context,
+                                            VerifyEmail());
+                                      }
+                                      }
+
+
                                 }else
                                   showToast(
                                       text: 'Please Check Your Network Connection',
@@ -276,7 +280,27 @@ class _ParkingLoginScreenState extends State<ParkingLoginScreen> {
                                    ),
 
 
+
                                  ],
+                               ),
+                               Center(
+                                 child: TextButton(
+                                   style: ButtonStyle(
+                                     // overlayColor: MaterialStateProperty.all(HexColor('12345678')),
+                                     elevation: MaterialStateProperty.all(0),
+
+                                   ),
+                                   onPressed: () {
+
+                                   },
+                                   child: Text(
+                                     'Verify Email',
+                                     style: TextStyle(
+                                       color: Colors.black,
+                                       //    fontWeight: FontWeight.bold,
+                                     ),
+                                   ),
+                                 ),
                                ),
 
                              ],

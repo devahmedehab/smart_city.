@@ -1,18 +1,16 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sleek_circular_slider/sleek_circular_slider.dart';
+import 'package:smart_city/models/light_model.dart';
 import 'package:smart_city/modules/home/cubit/cubit.dart';
 import 'package:smart_city/modules/home/cubit/states.dart';
 import 'package:smart_city/modules/home/custom_card.dart';
 import 'package:smart_city/modules/home/weather/extraWeather.dart';
 import 'package:smart_city/shared/components/constants.dart';
-import 'package:smart_city/shared/style/icon_broken.dart';
 import 'package:intl/intl.dart';
 
 class LivingRoom extends StatefulWidget {
@@ -21,6 +19,10 @@ class LivingRoom extends StatefulWidget {
 }
 
 class _LivingRoomState extends State<LivingRoom> {
+  var formKey = GlobalKey<FormState>();
+  List listLights;
+  LightModel lightsModel;
+
   @override
   void initState() {
     super.initState();
@@ -35,9 +37,21 @@ class _LivingRoomState extends State<LivingRoom> {
     RefreshController _refreshController = RefreshController();
     bool _hasInternet = false;
     ConnectivityResult result = ConnectivityResult.none;
+    var lightController = TextEditingController();
+    bool lighted = false;
 
     return BlocConsumer<HomeCubit, HomeStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is HomeGetSuccessLightsState) {
+          if (state.lightsModel.status) {
+            var model = HomeCubit.get(context).lightsModel;
+            led1 = model.data.led1;
+            led2 = model.data.led2;
+            led3 = model.data.led3;
+            led4 = model.data.led4;
+          }
+        }
+      },
       builder: (context, state) {
         return Scaffold(
             appBar: AppBar(
@@ -65,23 +79,36 @@ class _LivingRoomState extends State<LivingRoom> {
               child: Column(
                 children: [
                   CurrentWeather(),
-
                   Divider(),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   CustomCard(
                     size: MediaQuery.of(context).size,
-                    icon:  IconButton(
-                      onPressed: (){},
+                    icon: IconButton(
+                      onPressed: () {},
                       icon: Icon(Icons.lightbulb_outline),
                     ),
-
                     title: "Lightning",
                     statusOn: "OPEN",
                     statusOff: "LOCKED",
                   ),
+                  TextButton(
+                    onPressed: () {
+                      lighted = !lighted;
+
+                      if (lighted) {
+                        HomeCubit.get(context).postLightData(
+                            led1: 0, led2: led2, led3: led3, led4: led4,);
+                      } else {
+                        HomeCubit.get(context).postLightData(
+                            led1: 1, led2: led2, led3: led3, led4: led4,);
+                      }
+                    },
+                    child: Text('Aha'),
+                  ),
                 ],
               ),
-
             ));
       },
     );
@@ -97,7 +124,7 @@ class CurrentWeather extends StatelessWidget {
   Widget build(BuildContext context) {
     return GlowContainer(
       height: MediaQuery.of(context).size.height - 350,
-     // margin: EdgeInsets.all(2),
+      // margin: EdgeInsets.all(2),
       padding: EdgeInsets.only(top: 10, left: 30, right: 30),
       glowColor: Color(0xff00A1FF).withOpacity(0.5),
       borderRadius: BorderRadius.only(
@@ -111,20 +138,18 @@ class CurrentWeather extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                      Text(
-                        'Today',
-                        style: TextStyle( fontSize: 30,fontWeight: FontWeight.w300),
-                      ),
+                  Text(
+                    'Today',
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.w300),
+                  ),
                 ],
               ),
-
               Container(
                 height: 250,
                 child: Stack(
                   children: [
                     Image(
-                      image: AssetImage(
-                          'assets/images/thunder.png'),
+                      image: AssetImage('assets/images/thunder.png'),
                       fit: BoxFit.fill,
                     ),
                     Positioned(
@@ -135,13 +160,12 @@ class CurrentWeather extends StatelessWidget {
                           child: Column(
                         children: [
                           GlowText(
-                          '$temp°c',
+                            '$temp°c',
                             style: TextStyle(
                                 height: 0.1,
-                                fontSize:60,
+                                fontSize: 60,
                                 fontWeight: FontWeight.bold),
                           ),
-
                           Text('${DateFormat.EEEE().format(DateTime.now())}',
                               style: TextStyle(
                                 fontSize: 18,
@@ -159,14 +183,10 @@ class CurrentWeather extends StatelessWidget {
                 height: 5,
               ),
               ExtraWeather(),
-
-
             ],
           ),
-
         ],
       ),
-
     );
   }
 }
