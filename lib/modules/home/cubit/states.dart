@@ -51,3 +51,5 @@ class HomePostErrorLightsState extends HomeStates {
 class AppChangeBottomSheetState extends HomeStates{}
 
 class AppChangeModeState extends HomeStates{}
+
+class AppChangeLightState extends HomeStates{}

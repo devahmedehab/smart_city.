@@ -14,6 +14,7 @@ import 'package:smart_city/modules/on_boarding/on_boarding_screen.dart';
 import 'package:smart_city/modules/parking/cubit/cubit.dart';
 import 'package:smart_city/shared/bloc_observer.dart';
 import 'package:smart_city/shared/components/constants.dart';
+import 'package:smart_city/shared/components/constants.dart';
 import 'package:smart_city/shared/cubit/cubit.dart';
 import 'package:smart_city/shared/cubit/states.dart';
 import 'package:smart_city/shared/network/cache_helper.dart';
@@ -21,6 +22,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_city/shared/network/dio_helper.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
+import 'package:smart_city/shared/style/theme.dart';
 
 
 Future main() async {
@@ -118,11 +120,10 @@ class _MyAppState extends State<MyApp> {
                 return OverlaySupport.global(
                   child: MaterialApp(
                     debugShowCheckedModeBanner: false,
-                    theme: ThemeData(primarySwatch: Colors.blue,
-                   // primaryColor: Colors.blue
-                    ),
-                    darkTheme: ThemeData.dark(),
-                    themeMode: AppCubit.get(context).isDark
+                    theme: lightTheme,
+
+                    darkTheme: darkTheme,
+                    themeMode: isDark
                         ? ThemeMode.light
                         : ThemeMode.dark,
                     home: widget.startWidget,

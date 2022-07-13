@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:smart_city/modules/login/parking_login_screen.dart';
 import 'package:smart_city/modules/register/register_screen.dart';
 import 'package:smart_city/shared/components/components.dart';
@@ -7,10 +8,12 @@ import 'dart:ui';
 
 const Color kBgColor = Color(0xFFecf5fb);
 const Color kOrangeColor = Color(0xFFF07662);
-const Color kDarkGreyColor = Color(0xFF727C9B);
-const Color kGreenColor = Color(0xFF47f03e);
-const Color kBlueColor = Color(0xFF07062e);
-
+const Color kDarkGreyColor = Color.fromARGB(255, 59, 78, 90);
+const Color kGreenColor = Color(0xA8C7DCE5);
+const Color kBlueColor = Color(0x3B4E5A);
+const defaultColor = Colors.blue;
+Icon icon = Icon(Icons.flashlight_on_outlined,size: 60,);
+bool isDark=false;
 void signOut(context) {
   CacheHelper.removeData(
     key: 'token',
@@ -41,6 +44,7 @@ String carInt='';
 String oldPassword='';
 String newPassword='';
 List leds;
+Color color=Colors.white;
 
  final String oneSignalId= "c6218e1e-82ad-420b-bcad-3d626af97d6d";
 

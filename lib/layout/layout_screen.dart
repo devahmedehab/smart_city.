@@ -7,12 +7,15 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:smart_city/layout/cubit/cubit.dart';
 import 'package:smart_city/layout/cubit/state.dart';
+import 'package:smart_city/modules/parking/parking_screen.dart';
 import 'package:smart_city/modules/profile/profile.dart';
 import 'package:smart_city/modules/setting/settings_screen.dart';
 import 'package:smart_city/shared/components/components.dart';
 import 'package:smart_city/shared/components/constants.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:smart_city/shared/cubit/cubit.dart';
+import 'package:smart_city/shared/style/icon_broken.dart';
 
 class LayoutScreen extends StatefulWidget {
   @override
@@ -75,135 +78,10 @@ class _LayoutScreenState extends State<LayoutScreen> {
       nameController.text = model.data.username;
     }, builder: (context, state) {
       var cubit = ParkingCubit.get(context);
-      return ZoomDrawer(
-        controller: z,
-        borderRadius: 20,
-        // style: DrawerStyle.defaultStyle,
-        menuBackgroundColor: Colors.blue,
-        showShadow: true,
-        angle: 0.0,
-        drawerShadowsBackgroundColor: kBlueColor,
-        slideWidth: MediaQuery.of(context).size.width * .95,
-        menuScreen: Container(
-          child: ListView(
-            children: [
-              DrawerHeader(
-                  decoration: BoxDecoration(color: Colors.blue),
-                  child: InkWell(
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          radius: 31,
-                          backgroundColor: Colors.deepPurpleAccent,
-                          child: CircleAvatar(
-                              radius: 30,
-                              backgroundImage:
-                                  AssetImage('assets/images/onboard_1.png')),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Container(
-                          width: 190,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(nameController.text,
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.black,
-                                    fontFamily: '',
-                                  )),
-                              const SizedBox(
-                                height: 4,
-                              ),
-                              Text(
-                                emailController.text,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.black,
-                                  fontFamily: '',
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    onTap: () async {
-                      _hasInternet =
-                          await InternetConnectionChecker().hasConnection;
-
-                      if (_hasInternet) {
-                        navigateTo(
-                          context,
-                          ProfileScreen(),
-                        );
-                      } else {
-                        showToast(
-                            text: 'Please Check Your Network Connection',
-                            state: ToastStates.ERROR);
-                      }
-                    },
-                  )),
-
-              //   myDivider(),
-              SizedBox(
-                height: 30,
-              ),
-              buildListTile("Main Screen", Icons.home_outlined, () {
-                navigateTo(context, LayoutScreen());
-              }),
-              SizedBox(
-                height: 15,
-              ),
-              buildListTile("Profile", Icons.account_box_outlined, () async {
-                _hasInternet = await InternetConnectionChecker().hasConnection;
-
-                if (_hasInternet) {
-                  navigateTo(
-                    context,
-                    ProfileScreen(),
-                  );
-                } else {
-                  showToast(
-                      text: 'Please Check Your Network Connection',
-                      state: ToastStates.ERROR);
-                }
-              }),
-              SizedBox(
-                height: 15,
-              ),
-              buildListTile("Settings", Icons.settings_outlined, () {
-                navigateTo(context, SettingsScreen());
-              }),
-
-              SizedBox(
-                height: 15,
-              ),
-              myDivider(),
-              SizedBox(
-                height: 15,
-              ),
-              buildListTile("Log out", Icons.logout_outlined, () {
-                signOut(context);
-              }),
-              SizedBox(
-                height: 15,
-              ),
-            ],
-          ),
-        ),
-        mainScreen: Scaffold(
+      return Scaffold(
           appBar: AppBar(
-            title: Text('Smart City'),
-            leading: IconButton(
-              icon: const Icon(Icons.menu),
-              onPressed: () {
-                z.toggle();
-              },
-            ),
+            title: Text('Smart City',),
+
             elevation: 10,
           ),
           body: SmartRefresher(
@@ -232,10 +110,134 @@ class _LayoutScreenState extends State<LayoutScreen> {
             enablePullUp: true,
             controller: _refreshController,
           ),
+        drawer: Container(
+         // color: Colors.white,
+          child: ClipRRect(
+            child: ClipRRect(
+              borderRadius: BorderRadius.only(
+                topRight:Radius.circular(35) ,
+                bottomRight: Radius.circular(35)
+              ),
+              child: Drawer(
+                width:320,
+                child: ListView(
+                  children: [
+                    DrawerHeader(
+                      //  decoration: BoxDecoration(color: Colors.blueGrey),
+                        child: InkWell(
+                          child: Row(
+                            children: [
+                              CircleAvatar(
+                                radius: 31,
+                                backgroundColor: Colors.deepPurpleAccent,
+                                child: CircleAvatar(
+                                    radius: 30,
+                                    backgroundImage:
+                                    AssetImage('assets/images/onboard_1.png')),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                      nameController.text,
+                                      maxLines: 2,
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                       // color: Colors.black,
+                                        fontFamily: '',
+                                      )),
+                                  const SizedBox(
+                                    height: 4,
+                                  ),
+                                  Text(
+                                    emailController.text,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                   //   color: Colors.black,
+                                      fontFamily: '',
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          onTap: () async{
+                            _hasInternet=await InternetConnectionChecker().hasConnection ;
+
+                            if (_hasInternet) {
+                              navigateTo(
+                                context,
+                                ProfileScreen(),
+                              );
+                            }
+
+                            else{
+                              showToast(
+                                  text: 'Please Check Your Network Connection', state: ToastStates.ERROR
+                              );
+                            }
+                          },
+                        )),
+
+                      myDivider(),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    buildListTile("Main Screen", IconBroken.Home, () {navigateAndFinish(context, LayoutScreen());}),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    buildListTile("Profile", IconBroken.Profile, () async{
+                      _hasInternet=await InternetConnectionChecker().hasConnection ;
+
+                      if (_hasInternet) {
+                        navigateTo(
+                          context,
+                          ProfileScreen(),
+                        );
+
+                      }
+                      else{
+                        showToast(
+                            text: 'Please Check Your Network Connection', state: ToastStates.ERROR
+                        );
+                      }
+                    }),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    buildListTile("Settings", IconBroken.Setting, () {
+                      navigateTo(context, SettingsScreen());
+                    }),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    myDivider(),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    buildListTile("Log out", IconBroken.Logout, () {
+                      signOut(context);
+                    }),
+                    SizedBox(
+                      height: 15,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
 
           //
 
            bottomNavigationBar: BottomNavigationBar(
+
+
             onTap: (index) {
               cubit.changeBottom(index);
 
@@ -243,19 +245,20 @@ class _LayoutScreenState extends State<LayoutScreen> {
             currentIndex: cubit.currentIndex,
             items: [
               BottomNavigationBarItem(
-                icon: Icon(Icons.apps_outlined),
+                icon: Icon(IconBroken.Category),
                 label: 'Parking',
+
               ),
 
               BottomNavigationBarItem(
 
-                icon: Icon(Icons.home_outlined),
+                icon: Icon(IconBroken.Home),
                 label: 'Home',
               ),
             ],
           ),
-        ),
-      );
+        );
+     // );
     });
   }
 }

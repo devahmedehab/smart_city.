@@ -11,10 +11,8 @@ class NumOfParking extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
 
-    appBar: AppBar(
-      title: Text('$city Parking '),
+    appBar: defaultAppBar(context: context, title: '$city Parking '),
 
-    ),
     body:SingleChildScrollView(
       child: Column(
           children: [
@@ -26,7 +24,7 @@ class NumOfParking extends StatelessWidget {
               separatorBuilder:(context,index)=>SizedBox(
                 height: 10.0,
               ),
-              itemCount: 10,
+              itemCount: 2,
             ),
           ],
         ),
@@ -43,7 +41,7 @@ Widget buildChatItem(BuildContext context,index,) =>
       navigateTo(context, Parking(model: 'Parking ${index+1}'));
     },
     child:Card(
-      color: Colors.blue,
+     // color: Colors.blue,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),

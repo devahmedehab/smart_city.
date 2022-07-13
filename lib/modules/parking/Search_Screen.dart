@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_city/shared/style/icon_broken.dart';
 import 'Parking.dart';
 import 'num_of_parking.dart';
 
@@ -6,14 +7,7 @@ class CitySearch extends SearchDelegate<String> {
   final cities = [
     'Cairo',
     'Alexandria',
-    'Sharqia',
     'Giza',
-    'Aswan',
-    'Gharbia',
-    'Suez',
-    'Dakahlia',
-    'Ismailia',
-    'Faiyum',
   ];
 
 
@@ -34,7 +28,7 @@ class CitySearch extends SearchDelegate<String> {
 
   @override
   Widget buildLeading(BuildContext context) => IconButton(
-    icon: Icon(Icons.arrow_back),
+    icon: Icon(IconBroken.Arrow___Left_2),
     onPressed: () => close(context, ''),
   );
 

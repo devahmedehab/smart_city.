@@ -87,7 +87,7 @@ class _VerifyPassword extends State<VerifyPassword> {
                           const Padding(
                             padding: EdgeInsets.symmetric(vertical: 8.0),
                             child: Text(
-                              'Email Address Verification',
+                              'Password Verification',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 22),
                               textAlign: TextAlign.center,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_city/shared/components/components.dart';
+import 'package:smart_city/shared/style/icon_broken.dart';
 
 import 'Search_Screen.dart';
 import 'num_of_parking.dart';
@@ -9,15 +10,7 @@ class ParkingScreen extends StatelessWidget {
   final List<String> cites = <String>[
     'Cairo',
     'Alexandria',
-    'Sharqia',
     'Giza',
-    'Aswan',
-    'Gharbia',
-    'Suez',
-    'Dakahlia',
-    'Ismailia',
-    'Faiyum',
-
   ];
 
 
@@ -48,7 +41,6 @@ class ParkingScreen extends StatelessWidget {
                       child: Container(
                         width: size.width*.9,
                         decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 242, 232, 232),
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(20),
                               topRight: Radius.circular(20),
@@ -62,7 +54,7 @@ class ParkingScreen extends StatelessWidget {
                               child: Text(
                                 'Search ...',
                                 style: TextStyle(
-                                  color: Colors.grey[500],
+                                  color: Colors.grey[600],
                                   fontSize: 15,
                                   fontWeight: FontWeight.w700,
                                   fontStyle: FontStyle.italic,
@@ -74,8 +66,8 @@ class ParkingScreen extends StatelessWidget {
                                 padding: const EdgeInsets.all(8.0),
                                 child: IconButton(
                                   icon: Icon(
-                                    Icons.search,
-                                    color: Colors.blue,
+                                    IconBroken.Search,
+                                    color: Colors.grey[600],
                                   ),
                                   onPressed: () async {
                                     showSearch(
@@ -96,6 +88,9 @@ class ParkingScreen extends StatelessWidget {
                   ],
                 ),
               )),
+          SizedBox(
+            height: 10,
+          ),
           Expanded(child:
           SingleChildScrollView(
             child: ListView.separated(
@@ -134,13 +129,15 @@ Widget buildChatItem(
         child:Padding(
         padding: EdgeInsets.only(left: 10,right: 10),
           child: Card(
+            shadowColor: Colors.black,
+            elevation: 40,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20),
                   topRight: Radius.circular(50),
                   bottomLeft: Radius.circular(10),
                 )),
-            color: Colors.blue,
+          //  color: Colors.blue,
             child: Padding(
               padding: const EdgeInsets.only(top: 12,left: 10,bottom: 12),
               child: Container(

@@ -10,8 +10,11 @@ import 'package:smart_city/modules/home/cubit/cubit.dart';
 import 'package:smart_city/modules/home/cubit/states.dart';
 import 'package:smart_city/modules/home/custom_card.dart';
 import 'package:smart_city/modules/home/weather/extraWeather.dart';
+import 'package:smart_city/shared/components/components.dart';
 import 'package:smart_city/shared/components/constants.dart';
 import 'package:intl/intl.dart';
+import 'package:smart_city/shared/components/constants.dart';
+import 'package:smart_city/shared/cubit/cubit.dart';
 
 class LivingRoom extends StatefulWidget {
   @override
@@ -40,6 +43,8 @@ class _LivingRoomState extends State<LivingRoom> {
     var lightController = TextEditingController();
     bool lighted = false;
 
+
+
     return BlocConsumer<HomeCubit, HomeStates>(
       listener: (context, state) {
         if (state is HomeGetSuccessLightsState) {
@@ -53,10 +58,9 @@ class _LivingRoomState extends State<LivingRoom> {
         }
       },
       builder: (context, state) {
+
         return Scaffold(
-            appBar: AppBar(
-              title: Text('Living Room'),
-            ),
+            appBar:defaultAppBar(context: context, title: 'Living Room'),
             body: SmartRefresher(
               onRefresh: () async {
                 await Future.delayed(Duration(microseconds: 500));
@@ -105,7 +109,7 @@ class _LivingRoomState extends State<LivingRoom> {
                             led1: 1, led2: led2, led3: led3, led4: led4,);
                       }
                     },
-                    child: Text('Aha'),
+                    child: Text('Ahmed'),
                   ),
                 ],
               ),

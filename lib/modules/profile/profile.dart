@@ -6,6 +6,7 @@ import 'package:smart_city/layout/cubit/cubit.dart';
 import 'package:smart_city/layout/cubit/state.dart';
 import 'package:smart_city/shared/components/components.dart';
 import 'package:restart_app/restart_app.dart';
+import 'package:smart_city/shared/style/icon_broken.dart';
 
 import 'edit_profile_screen.dart';
 
@@ -37,9 +38,9 @@ class ProfileScreen extends StatelessWidget {
             builder: (context) {
 
               return Scaffold(
-                appBar: AppBar(
-                  title: Text(' Profile'),
-                  elevation: 10,
+                appBar:defaultAppBar(
+                  context: context,
+                  title: 'Profile',
                   actions: [
                     IconButton(
                       onPressed: ()
@@ -49,13 +50,15 @@ class ProfileScreen extends StatelessWidget {
                             EditProfileScreen()
                         );
                       },
-                      icon: Icon(Icons.edit_outlined,
-                        color: Colors.blue,
+                      icon: Icon(IconBroken.Edit,
                       ),
 
                     ),
                   ],
+
                 ),
+
+
                 body: Center(
 
                   child: Column(
@@ -100,7 +103,7 @@ class ProfileScreen extends StatelessWidget {
                                   isClickable: false,
                                   controller: emailController,
                                   label: 'Email Address',
-                                  prefix: Icons.email,
+                                  prefix: Icons.email_outlined,
                                 ),
                                 SizedBox(
                                   height: 20,
@@ -109,7 +112,7 @@ class ProfileScreen extends StatelessWidget {
                                   isClickable: false,
                                   controller: phoneController,
                                   label: 'Phone',
-                                  prefix: Icons.phone,
+                                  prefix: IconBroken.Call,
                                 ),
                                 SizedBox(
                                   height: 20,
@@ -130,7 +133,7 @@ class ProfileScreen extends StatelessWidget {
 
                                           controller:carStrController,
                                           prefix:
-                                          Icons.directions_car_rounded,
+                                          Icons.directions_car_outlined,
 
 
                                           label: 'CAR ID ',
@@ -152,7 +155,7 @@ class ProfileScreen extends StatelessWidget {
                                           isClickable: false,
                                           context: context,
                                           controller: carIntController,
-                                          prefix: Icons.directions_car_rounded,
+                                          prefix: Icons.directions_car_outlined,
 
 
                                           label: 'CAR Num ',

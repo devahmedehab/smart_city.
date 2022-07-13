@@ -117,6 +117,20 @@ class HomeCubit extends Cubit<HomeStates> {
 
   }
 
+bool  isLighted=false;
+void lightSwitch(){
+
+    isLighted =!isLighted;
+
+
+    print(isLighted);
+
+      emit(AppChangeLightState());
+  }
+
+
+
+
 
 
 }

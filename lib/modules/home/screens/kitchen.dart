@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:smart_city/modules/home/cubit/cubit.dart';
 import 'package:smart_city/modules/home/cubit/states.dart';
+import 'package:smart_city/shared/components/components.dart';
 import 'package:smart_city/shared/components/constants.dart';
 
 class Kitchen extends StatelessWidget {
@@ -22,8 +23,9 @@ class Kitchen extends StatelessWidget {
       listener: (context,state){},
       builder: (context,state){
         return  Scaffold(
-          appBar: AppBar(
-            title:Text('Kitchen') ,
+          appBar: defaultAppBar(
+            context: context,
+            title: 'Kitchen',
           ),
           body: SmartRefresher(
           onRefresh: () async {

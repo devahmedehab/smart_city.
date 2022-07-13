@@ -5,6 +5,8 @@ import 'package:smart_city/models/login_model.dart';
 import 'package:smart_city/modules/home/home_screen.dart';
 import 'package:smart_city/modules/parking/parking_screen.dart';
 import 'package:smart_city/shared/components/constants.dart';
+import 'package:smart_city/shared/cubit/cubit.dart';
+import 'package:smart_city/shared/network/cache_helper.dart';
 import 'package:smart_city/shared/network/dio_helper.dart';
 
 
@@ -26,6 +28,27 @@ class ParkingCubit extends Cubit<ParkingStates> {
     HomeScreen(),
 
   ];
+  bool isDark =false;
+
+  void changeAppMode({bool fromShared})
+  {
+    if(fromShared !=null){
+
+      isDark=fromShared;
+      emit(AppChangeModeState());
+    } else
+    {
+      isDark =!isDark;
+      CacheHelper.putBoolean(key: 'isDark', value: isDark).then((value)
+      {
+        emit(AppChangeModeState());
+      } );
+
+    }
+
+
+
+  }
 
 
 
@@ -97,5 +120,4 @@ class ParkingCubit extends Cubit<ParkingStates> {
       emit(ParkingErrorUpdateState());
     });
   }
-
 }

@@ -59,6 +59,8 @@ class ParkingSuccessUpdateState extends ParkingStates{
 }
 
 class ParkingErrorUpdateState extends ParkingStates {}
+class AppChangeModeState extends ParkingStates{}
+
 
 
 

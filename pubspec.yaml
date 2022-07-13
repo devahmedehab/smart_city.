@@ -101,6 +101,9 @@ flutter:
     - family: FunIcons
       fonts:
           - asset: assets/fonts/FunIcons.ttf
+    - family: IconBroken
+      fonts:
+        - asset: assets/fonts/icons.ttf
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

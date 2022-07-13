@@ -6,6 +6,8 @@ import 'package:smart_city/shared/cubit/states.dart';
 import 'package:smart_city/shared/network/cache_helper.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../components/constants.dart';
+
 class AppCubit extends Cubit<AppStates>
 {
   AppCubit() :super(AppInitialState());
@@ -144,7 +146,7 @@ class AppCubit extends Cubit<AppStates>
     fabIcon=icon;
     emit(AppChangeBottomSheetState());
   }
-  bool isDark =false;
+  Color color=Colors.white;
 
   void changeAppMode({bool fromShared})
   {
@@ -154,6 +156,10 @@ class AppCubit extends Cubit<AppStates>
       emit(AppChangeModeState());
     } else
     {
+      if(isDark)color=Colors.white;
+      else color=Colors.black;
+
+
       isDark =!isDark;
       CacheHelper.putBoolean(key: 'isDark', value: isDark).then((value)
       {
@@ -165,5 +171,4 @@ class AppCubit extends Cubit<AppStates>
 
 
   }
-
 }

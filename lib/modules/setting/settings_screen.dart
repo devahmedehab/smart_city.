@@ -9,6 +9,8 @@ import 'package:smart_city/modules/setting/dark_mode/dark_mode.dart';
 import 'package:smart_city/shared/components/components.dart';
 import 'package:smart_city/shared/components/constants.dart';
 import 'package:smart_city/shared/cubit/cubit.dart';
+import 'package:smart_city/shared/cubit/states.dart';
+import 'package:smart_city/shared/style/icon_broken.dart';
 
 import '../password/changePassword.dart';
 
@@ -27,7 +29,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     bool _hasInternet =false;
     final color = _hasInternet ? Colors.green :Colors.red;
     final text = _hasInternet ? 'Internet': 'No Internet';
-    return BlocConsumer<ParkingCubit,ParkingStates>(
+    return BlocConsumer<AppCubit,AppStates>(
         listener: (context,state){},
           builder: (context,state){
         return Scaffold(
@@ -40,10 +42,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
           body: Column(
             children: [
               SizedBox(height: 30,),
-              buildListTile(
-                // Colors.black,
+              buildListTile2(
                   "Edit Profile",
-                  Icons.edit_outlined,
+                  IconBroken.Edit,
                       ()async{
                         _hasInternet=await InternetConnectionChecker().hasConnection ;
 
@@ -59,7 +60,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               text: 'Please Check Your Network Connection', state: ToastStates.ERROR
                           );
                         }
-                  }
+                  },
+                AppCubit.get(context).color,
+
+
               ),
               myDivider(),
               Container(
@@ -67,9 +71,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   padding: const EdgeInsets.all(18),
                   child: Row(
                     children: [
-                      Icon(Icons.dark_mode,),
+
+                      Icon(Icons.dark_mode_outlined,),
                       SizedBox(width: 30,),
                       Text('Dark Mode',style: TextStyle(
+                        color: AppCubit.get(context).color,
                         fontWeight: FontWeight.bold,
                         fontSize: 15,
                       ),),
@@ -93,7 +99,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         rollingInfoLeft: const RollingIconInfo(
                           icon: Icons.light_mode_outlined,
                           iconColor: Colors.black,
-                          backgroundColor: Colors.blueAccent,
+                          backgroundColor: Color.fromARGB(255, 59, 78, 90),
                           text: Text('LIGHT'),
                         ),
                       ),
@@ -103,22 +109,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
               myDivider(),
-              buildListTile(
+              buildListTile2(
                 // Colors.black,
                   "Change Password",
-                  Icons.lock_outlined,
+                  IconBroken.Lock,
                       (){
                     navigateTo(context, (ChangePassword()));
-                  }
+                  },                AppCubit.get(context).color,
+
               ),
               myDivider(),
-              buildListTile(
+              buildListTile2(
                 // Colors.black,
                   "Log Out",
-                  Icons.logout_rounded,
+                  IconBroken.Logout,
                       (){
                     signOut(context);
-                  }
+                  },                AppCubit.get(context).color,
+
               ),
 
             ],

@@ -7,6 +7,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:smart_city/modules/parking/cubit/cubit.dart';
 import 'package:smart_city/modules/parking/cubit/states.dart';
+import 'package:smart_city/shared/components/components.dart';
 import 'package:smart_city/shared/components/constants.dart';
 
 
@@ -50,10 +51,8 @@ class _ParkingState extends State<Parking> {
         builder: (context, state) {
 
           return Scaffold(
-            appBar: AppBar(
-              backgroundColor: Colors.blueGrey,
-              title: Text('1 '),
-            ),
+            appBar:defaultAppBar(context: context, title: '${widget.model.toString()}',),
+
             body: SmartRefresher(
 
 
@@ -90,6 +89,7 @@ class _ParkingState extends State<Parking> {
                       height: height,
                       width: width,
                       decoration: BoxDecoration(
+
                           image: DecorationImage(
                             image: AssetImage(
                               'assets/images/p1.jpeg',
@@ -98,8 +98,8 @@ class _ParkingState extends State<Parking> {
                           )),
                     ),
                     PositionedDirectional(
-                      bottom: 10,
-                      start: 170,
+                      bottom: size.height*.022,
+                      start: size.width*0.405,
                       child: Text(
                         'Entry',
                         style: TextStyle(
@@ -225,8 +225,8 @@ class _ParkingState extends State<Parking> {
                           )),
 
                     PositionedDirectional(
-                        top: 20,
-                        start: 170,
+                        top: size.height*.022,
+                        start: size.width*0.428,
                         child: Text(
                           'EXIT',
                           style: TextStyle(

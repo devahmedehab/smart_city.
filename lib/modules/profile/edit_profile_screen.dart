@@ -39,20 +39,15 @@ class EditProfileScreen extends StatelessWidget {
             builder: (context) {
 
               return Scaffold(
-                appBar: AppBar(
-                  title: Text('Edit Profile'),
-                  elevation: 10,
+
+                appBar:defaultAppBar(
+                  context: context,
+                  title: 'Edit Profile',
                   actions: [
                     Padding(
                       padding: const EdgeInsets.only( right: 10),
-                      child: TextButton(
-                        child: Text(
-                          'Update',
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                            color: Colors.blueAccent,
-                          ),
+                      child: IconButton(
+                        icon: Icon(IconBroken.Upload,
                         ),
                         onPressed: (){
                           if (formKey.currentState.validate()) {
@@ -76,6 +71,7 @@ class EditProfileScreen extends StatelessWidget {
 
                   ],
                 ),
+
                 body: SingleChildScrollView(
 
                   child: Column(
@@ -93,7 +89,7 @@ class EditProfileScreen extends StatelessWidget {
                                 if (state is ParkingLoadingUpdateState)
 
                                   LinearProgressIndicator(color: Colors.blueAccent,),
-                                SizedBox(height: 20,),
+                                SizedBox(height: 30,),
                                 Stack(
                                   alignment: AlignmentDirectional.bottomEnd,
                                   children: [
@@ -136,7 +132,7 @@ class EditProfileScreen extends StatelessWidget {
                                     return null;
                                   },
                                   label: 'Name',
-                                  prefix: Icons.person,
+                                  prefix: IconBroken.User,
                                 ),
                                 SizedBox(
                                   height: 20,
@@ -155,7 +151,7 @@ class EditProfileScreen extends StatelessWidget {
                                   }
                                   ,
                                   label: 'Email Address',
-                                  prefix: Icons.email,
+                                  prefix: Icons.email_outlined,
                                 ),
                                 SizedBox(
                                   height: 20,
@@ -171,7 +167,7 @@ class EditProfileScreen extends StatelessWidget {
                                     }
                                   },
                                   label: 'Phone',
-                                  prefix: Icons.phone,
+                                  prefix: IconBroken.Call,
                                 ),
                                 SizedBox(
                                   height: 20,
@@ -197,7 +193,7 @@ class EditProfileScreen extends StatelessWidget {
                                           controller:carStrController,
                                           type: TextInputType.name,
                                           prefix:
-                                          Icons.directions_car_rounded,
+                                          Icons.directions_car_outlined,
 
 
                                           label: 'CAR ID ',
@@ -227,7 +223,7 @@ class EditProfileScreen extends StatelessWidget {
                                           },
                                           controller: carIntController,
                                           type: TextInputType.number,
-                                          prefix: Icons.directions_car_rounded,
+                                          prefix: Icons.directions_car_outlined,
 
 
                                           label: 'CAR Num',

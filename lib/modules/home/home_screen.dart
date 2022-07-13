@@ -85,46 +85,33 @@ class _HomeScreenState extends State<HomeScreen> {
                   maxCrossAxisExtent: 300.0,
                   children: <Widget>[
                     SingleChildScrollView(
-                      primary: true,
                       child: InkWell(
+                        child: Card(
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft:Radius.circular(20),bottomRight:Radius.circular(20) )),
+                          elevation: 40,
+                          shadowColor: Colors.black,
 
-
-                        child: Container(
-
-                          decoration: BoxDecoration(
-                            color: kBgColor,
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black12,
-                                blurRadius: 8,
-                                offset: Offset(3, 3),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 5,
                               ),
-                              BoxShadow(
-                                color: Colors.white,
-                                blurRadius: 0,
-                                offset: Offset(-3, -3),
+                              Text(
+                                'Garage',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Image(image: AssetImage('assets/images/garage5.png')),
+                              SizedBox(
+                                height: 20,
                               ),
                             ],
-                          ),
-                          padding: const EdgeInsets.all(8),
-                          child: Center(
-                            child: Column(
-                              children: [
-                                Text(
-                                  'Garage',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Image(image: AssetImage('assets/images/garage.png'),)
-                              ],
-                            ),
                           ),
 
                         ),
@@ -133,7 +120,191 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                       ),
                     ),
-                    InkWell(
+                    SingleChildScrollView(
+                      child: InkWell(
+                        child: Card(
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft:Radius.circular(20),bottomRight:Radius.circular(20) )),
+                          elevation: 40,
+                          shadowColor: Colors.black,
+
+
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                'Living Room',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Image(image: AssetImage('assets/images/living.png')),
+                              SizedBox(
+                                height: 20,
+                              ),
+                            ],
+                          ),
+
+                        ),
+                        onTap: (){
+                          navigateTo(context, LivingRoom());
+                        },
+                      ),
+                    ),
+                    SingleChildScrollView(
+                      child: InkWell(
+                        child: Card(
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft:Radius.circular(20),bottomRight:Radius.circular(20) )),
+                          elevation: 40,
+                          shadowColor: Colors.black,
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                'Kitchen',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Image(image: AssetImage('assets/images/kitchen1.png')),
+                              SizedBox(
+                                height: 20,
+                              ),
+                            ],
+                          ),
+
+                        ),
+                        onTap: (){
+                          navigateTo(context, Kitchen());
+                        },
+                      ),
+                    ),
+                    SingleChildScrollView(
+                      child: InkWell(
+                        child: Card(
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft:Radius.circular(20),bottomRight:Radius.circular(20) )),
+                          elevation: 40,
+                          shadowColor: Colors.black,
+
+
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                'Bathroom',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Image(image: AssetImage('assets/images/bath1.png')),
+                              SizedBox(
+                                height: 20,
+                              ),
+                            ],
+                          ),
+
+                        ),
+                        onTap: (){
+                          navigateTo(context, BathRoom());
+                        },
+                      ),
+                    ),
+                    SingleChildScrollView(
+                      child: InkWell(
+                        child: Card(
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft:Radius.circular(20),bottomRight:Radius.circular(20) )),
+                          elevation: 40,
+                          shadowColor: Colors.black,
+
+
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                'Bed Room',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Image(image: AssetImage('assets/images/bed4.png')),
+                              SizedBox(
+                                height: 20,
+                              ),
+                            ],
+                          ),
+
+                        ),
+                        onTap: (){
+                          navigateTo(context, BedRoom());
+                        },
+                      ),
+                    ),
+                    SingleChildScrollView(
+                      child: InkWell(
+                        child: Card(
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft:Radius.circular(20),bottomRight:Radius.circular(20) )),
+                          elevation: 40,
+                          shadowColor: Colors.black,
+
+
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                'Roof',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Image(image: AssetImage('assets/images/roof3.png')),
+                              SizedBox(
+                                height: 20,
+                              ),
+                            ],
+                          ),
+
+                        ),
+                        onTap: (){
+                          navigateTo(context, Roof());
+                        },
+                      ),
+                    ),
+
+                    /*InkWell(
                       child: SingleChildScrollView(
                         child: Container(
                           decoration: BoxDecoration(
@@ -141,7 +312,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             borderRadius: BorderRadius.circular(20),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.black12,
+                                color: Colors.black45,
                                 blurRadius: 8,
                                 offset: Offset(3, 3),
                               ),
@@ -183,7 +354,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             borderRadius: BorderRadius.circular(20),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.black12,
+                                color: Colors.black45,
                                 blurRadius: 8,
                                 offset: Offset(3, 3),
                               ),
@@ -225,7 +396,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             borderRadius: BorderRadius.circular(20),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.black12,
+                                color: Colors.black45,
                                 blurRadius: 8,
                                 offset: Offset(3, 3),
                               ),
@@ -267,7 +438,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             borderRadius: BorderRadius.circular(20),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.black12,
+                                color: Colors.black45,
                                 blurRadius: 8,
                                 offset: Offset(3, 3),
                               ),
@@ -313,7 +484,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             borderRadius: BorderRadius.circular(20),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.black12,
+                                color: Colors.black45,
                                 blurRadius: 8,
                                 offset: Offset(3, 3),
                               ),
@@ -349,7 +520,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           navigateTo(context, Roof());
                         },
                       ),
-                    ),
+                    ),*/
                   ],
                 )),
           ),

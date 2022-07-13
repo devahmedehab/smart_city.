@@ -10,6 +10,7 @@ import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:smart_city/modules/home/cubit/cubit.dart';
 import 'package:smart_city/modules/home/cubit/states.dart';
 import 'package:smart_city/modules/home/weather/extraWeather.dart';
+import 'package:smart_city/shared/components/components.dart';
 import 'package:smart_city/shared/components/constants.dart';
 import 'package:smart_city/shared/style/icon_broken.dart';
 import 'package:intl/intl.dart';
@@ -38,8 +39,9 @@ class _BedRoomState extends State<BedRoom> {
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
-            appBar: AppBar(
-              title: Text('Bed Room'),
+            appBar: defaultAppBar(
+              context: context,
+              title: 'Bed Room',
             ),
             body: SmartRefresher(
               onRefresh: () async {
@@ -278,61 +280,54 @@ class CurrentWeather extends StatelessWidget {
             children: [
               Text(
                 'Today',
-                style: TextStyle( fontSize: 30),
+                style: TextStyle(fontSize: 30),
               ),
             ],
           ),
-
           Container(
             height: 250,
             child: Stack(
               children: [
-                if (temp >= 25&&rain ==1)
-                Image(
-                  image: AssetImage(
-                      'assets/images/sunny.png'),
-                  fit: BoxFit.fill,
-                ),
-                if (5<temp && temp < 25&&rain==1)
+                if (temp >= 25 && rain == 1)
                   Image(
-                    image: AssetImage(
-                        'assets/images/thunder.png'),
+                    image: AssetImage('assets/images/sunny.png'),
                     fit: BoxFit.fill,
                   ),
-                if (temp <= 5&&rain==1)
+                if (5 < temp && temp < 25 && rain == 1)
                   Image(
-                    image: AssetImage(
-                        'assets/images/snow.png'),
+                    image: AssetImage('assets/images/thunder.png'),
+                    fit: BoxFit.fill,
+                  ),
+                if (temp <= 5 && rain == 1)
+                  Image(
+                    image: AssetImage('assets/images/snow.png'),
                     fit: BoxFit.fill,
                   ),
                 if (rain == 0)
                   Image(
-                    image: AssetImage(
-                        'assets/images/rainy.png'),
+                    image: AssetImage('assets/images/rainy.png'),
                     fit: BoxFit.fill,
                   ),
-
                 Positioned(
                   bottom: 0,
                   right: 0,
                   left: 0,
                   child: Center(
                       child: Column(
-                        children: [
-                          GlowText(
-                            '$temp°c',
-                            style: TextStyle(
-                                height: 0.1,
-                                fontSize:60,
-                                fontWeight: FontWeight.bold),
-                          ),
-
-                          Text('${DateFormat.EEEE().format(DateTime.now())}',
-                              style: TextStyle(
-                                fontSize: 18,
-                              ))
-                        ],
-                      )),
+                    children: [
+                      GlowText(
+                        '$temp°c',
+                        style: TextStyle(
+                            height: 0.1,
+                            fontSize: 60,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text('${DateFormat.EEEE().format(DateTime.now())}',
+                          style: TextStyle(
+                            fontSize: 18,
+                          ))
+                    ],
+                  )),
                 )
               ],
             ),

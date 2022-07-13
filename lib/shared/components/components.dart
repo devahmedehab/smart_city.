@@ -3,12 +3,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:smart_city/shared/style/icon_broken.dart';
+
+import '../cubit/cubit.dart';
 
 
+Widget defaultAppBar({
+  @required BuildContext context,
+  String title,
+  List<Widget>actions,
+}) {
+  return AppBar(
+    leading: IconButton(
+      onPressed: (){
+        Navigator.pop(context);
+      },
+      icon: Icon(
+          IconBroken.Arrow___Left_2,
+       // color: Colors.black,
+      ),
+    ),
+    titleSpacing: 5,
+    title: Text(
+        title,
+    //  style: TextStyle(color: Colors.black),
+    ),
+    actions: actions,
+  );
+}
 
-Widget buildListTile(String title,IconData icon,Function tabHandler){
+Widget buildListTile(String title,IconData icon,Function tabHandler ){
   return ListTile(
-    leading:Icon(icon,size: 25,) ,
+    leading:Icon(icon,size: 25,color: Colors.white,) ,
 
     title: Text(title,style: TextStyle(
 
@@ -16,7 +42,39 @@ Widget buildListTile(String title,IconData icon,Function tabHandler){
       fontFamily: '',
       fontWeight: FontWeight.w700,
     ),),
+
     onTap: tabHandler,
+
+  );
+}
+Widget buildListTile1(context,String title,IconData icon,Function tabHandler, ){
+  return ListTile(
+    leading:Icon(icon,size: 25,color: Colors.white,) ,
+
+    title: Text(title,style: TextStyle(
+
+
+      fontFamily: '',
+      fontWeight: FontWeight.w700,
+    ),),
+
+    onTap: tabHandler,
+
+  );
+}
+Widget buildListTile2(String title,IconData icon,Function tabHandler,Color color){
+  return ListTile(
+    leading:Icon(icon,size: 25,color:color,) ,
+
+    title: Text(title,style: TextStyle(
+
+
+      fontFamily: '',
+      fontWeight: FontWeight.w700,
+    ),),
+
+    onTap: tabHandler,
+
   );
 }
 
@@ -44,7 +102,7 @@ Widget defaultButton({
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(radius),
-        color: Color(0xFF014963).withOpacity(.7),
+        color: Color.fromARGB(255, 59, 78, 90)
       ),
     );
 
