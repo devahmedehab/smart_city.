@@ -27,6 +27,8 @@ class Data {
   int led2;
   int led3;
   int led4;
+  int led5;
+  int led6;
 
   Data({this.led1, this.led2, this.led3, this.led4});
 
@@ -35,6 +37,8 @@ class Data {
     led2 = json['led2'];
     led3 = json['led3'];
     led4 = json['led4'];
+    led5 = json['led5'];
+    led6 = json['led6'];
   }
 
   Map<String, dynamic> toJson() {
@@ -43,6 +47,8 @@ class Data {
     data['led2'] = this.led2;
     data['led3'] = this.led3;
     data['led4'] = this.led4;
+    data['led5'] = this.led5;
+    data['led6'] = this.led6;
     return data;
   }
 }

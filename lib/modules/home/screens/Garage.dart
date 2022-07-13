@@ -87,7 +87,7 @@ class _GarageState extends State<Garage> {
                                     SizedBox(
                                       width: 20,
                                     ),
-                                    icon,
+                                    HomeCubit.get(context).icon,
                                     Spacer(),
                                     Switch(
                                         value: HomeCubit.get(context).isLighted,
@@ -95,20 +95,11 @@ class _GarageState extends State<Garage> {
                                           if (isSwitched == true) {
                                             HomeCubit.get(context)
                                                 .lightSwitch();
-
-                                            icon = Icon(
-                                              Icons.flashlight_on_outlined,
-                                              size: 60,
-                                            );
                                           }
                                           if (isSwitched == false) {
                                             HomeCubit.get(context)
                                                 .lightSwitch();
-                                            icon = Icon(
-                                              Icons.flashlight_off_outlined,
-                                              size: 60,
-                                            );
-                                          }
+                                               }
                                         }),
                                     SizedBox(
                                       width: 20,

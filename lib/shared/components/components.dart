@@ -102,7 +102,7 @@ Widget defaultButton({
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(radius),
-        color: Color.fromARGB(255, 59, 78, 90)
+        color: Colors.blue
       ),
     );
 

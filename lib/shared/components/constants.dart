@@ -12,7 +12,6 @@ const Color kDarkGreyColor = Color.fromARGB(255, 59, 78, 90);
 const Color kGreenColor = Color(0xA8C7DCE5);
 const Color kBlueColor = Color(0x3B4E5A);
 const defaultColor = Colors.blue;
-Icon icon = Icon(Icons.flashlight_on_outlined,size: 60,);
 bool isDark=false;
 void signOut(context) {
   CacheHelper.removeData(
@@ -58,10 +57,12 @@ var temp;
 var gas;
 var hum;
 var rain;
-var led1;
-var led2;
-var led3;
-var led4;
-var led5;
+var led_1;
+var led_2;
+var led_3;
+var led_4;
+var led_5;
+var led_6;
+
 
 

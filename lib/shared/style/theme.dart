@@ -63,7 +63,9 @@ ThemeData darkTheme =ThemeData(
 );
 
 ThemeData lightTheme= ThemeData(
-  drawerTheme: DrawerThemeData(backgroundColor: Color.fromARGB(255, 59, 78, 90)),
+  drawerTheme: DrawerThemeData(
+      backgroundColor: Colors.blue,
+  ),
   cardColor: Colors.white,
   primarySwatch: defaultColor,
 
@@ -74,26 +76,26 @@ ThemeData lightTheme= ThemeData(
     titleSpacing: 20,
     backwardsCompatibility: false,
     systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarColor: Color.fromARGB(255, 59, 78, 90),
+        statusBarColor: Colors.blue,
         statusBarIconBrightness: Brightness.dark
     ),
 
-    backgroundColor: Color.fromARGB(255, 59, 78, 90),
+    backgroundColor: Colors.blue,
     elevation: 0,
     titleTextStyle: TextStyle(
         fontFamily: 'RobotoCondensed',
-        color: Colors.white,
+        color: Colors.black,
         fontSize: 20,
         fontWeight: FontWeight.bold
     ),
     iconTheme: IconThemeData(
-        color: Colors.white
+        color: Colors.black
     ),
   ),
 
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     type: BottomNavigationBarType.fixed,
-    selectedItemColor: defaultColor,
+    selectedItemColor: Colors.blue,
     unselectedItemColor: Colors.grey[550],
     elevation: 20,
     backgroundColor: Colors.white,
@@ -104,7 +106,7 @@ ThemeData lightTheme= ThemeData(
     bodyText1: TextStyle(
         fontSize: 18.0,
         fontWeight: FontWeight.w600,
-       color: Colors.white
+       color: Colors.black
     ),
     subtitle1: TextStyle(
         fontSize: 15.0,

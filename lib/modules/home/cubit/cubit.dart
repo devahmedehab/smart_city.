@@ -65,15 +65,19 @@ class HomeCubit extends Cubit<HomeStates> {
       url: lights,
       token: token,
 
+
     ).then((value){
-      led1=lightsModel.data.led1;
-      led2=lightsModel.data.led2;
-      led3=lightsModel.data.led3;
-      led4=lightsModel.data.led4;
+
+
+
 
       lightsModel = LightModel.fromJson(value.data);
 
       emit(HomeGetSuccessLightsState(lightsModel));
+      print(LightModel.fromJson(value.data));
+      print(lightsModel.message);
+
+      print(lightsModel.data.led2);
 
 
     }).catchError((error) {
@@ -86,25 +90,32 @@ class HomeCubit extends Cubit<HomeStates> {
      int led2 ,
      int led3 ,
      int led4 ,
+     int led5 ,
+     int led6 ,
 
 
   })async
 
   {
     emit(HomePostLoadingLightsState());
-     getLightsData();
+
+   // getLightsData();
     await DioHelper.postData(
       url: lights,
+      token: token,
       data:{
         'led1':led1,
         'led2':led2,
         'led3':led3,
         'led4':led4,
+        'led5':led5,
+        'led6':led6,
       },
     ).then((value) {
-     // lightsModel= LightModel.fromJson(value.data);
+      lightsModel= LightModel.fromJson(value.data);
 
-      print(value.data);
+
+
 
 
 
@@ -118,10 +129,26 @@ class HomeCubit extends Cubit<HomeStates> {
   }
 
 bool  isLighted=false;
-void lightSwitch(){
+Icon icon = Icon(Icons.flashlight_on_outlined,size: 60,);
 
-    isLighted =!isLighted;
+  void lightSwitch(){
 
+    if (isLighted) {
+        icon = Icon(
+        Icons.flashlight_on_outlined,
+        size: 60,
+      );
+        isLighted =!isLighted;
+
+    }
+    else{
+      icon = Icon(
+        Icons.flashlight_off_outlined,
+        size: 60,
+      );
+      isLighted =!isLighted;
+
+    }
 
     print(isLighted);
 

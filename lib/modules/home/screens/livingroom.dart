@@ -48,16 +48,19 @@ class _LivingRoomState extends State<LivingRoom> {
     return BlocConsumer<HomeCubit, HomeStates>(
       listener: (context, state) {
         if (state is HomeGetSuccessLightsState) {
-          if (state.lightsModel.status) {
+
             var model = HomeCubit.get(context).lightsModel;
-            led1 = model.data.led1;
-            led2 = model.data.led2;
-            led3 = model.data.led3;
-            led4 = model.data.led4;
-          }
+            led_1 = model.data.led1;
+            led_2 = model.data.led2;
+            led_3 = model.data.led3;
+            led_4 = model.data.led4;
+            led_5 = model.data.led5;
+            led_6 = model.data.led6;
         }
       },
       builder: (context, state) {
+        bool isSwitched = false;
+
 
         return Scaffold(
             appBar:defaultAppBar(context: context, title: 'Living Room'),
@@ -80,38 +83,114 @@ class _LivingRoomState extends State<LivingRoom> {
               },
               //  enablePullUp: true,
               controller: _refreshController,
-              child: Column(
-                children: [
-                  CurrentWeather(),
-                  Divider(),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  CustomCard(
-                    size: MediaQuery.of(context).size,
-                    icon: IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.lightbulb_outline),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    CurrentWeather(),
+                    Divider(),
+                    SizedBox(
+                      height: 10,
                     ),
-                    title: "Lightning",
-                    statusOn: "OPEN",
-                    statusOff: "LOCKED",
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      lighted = !lighted;
+                    Padding(
+                      padding: EdgeInsets.all(20),
+                      child: SingleChildScrollView(
+                          child: Container(
+                            width: 200,
+                            height: 160,
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      bottomRight: Radius.circular(20))),
+                              elevation: 40,
+                              shadowColor: Colors.black,
+                              child: Column(
+                                children: [
+                                  Column(
+                                    children: [
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Row(
+                                        children: [
+                                          SizedBox(
+                                            width: 20,
+                                          ),
+                                          HomeCubit.get(context).icon,
+                                          Spacer(),
+                                          Switch(
+                                              value: HomeCubit.get(context).isLighted,
+                                              onChanged: (value) {
+                                                HomeCubit.get(context).getLightsData();
+                                                if (isSwitched == true) {
+                                                  HomeCubit.get(context)
+                                                      .lightSwitch();
+                                                  HomeCubit.get(context).postLightData(
+                                                    led1: 0,
+                                                    led2:led_2 ,
+                                                    led3: led_3,
+                                                    led4:led_4,
+                                                    led5: led_5,
+                                                    led6: led_6,
 
-                      if (lighted) {
-                        HomeCubit.get(context).postLightData(
-                            led1: 0, led2: led2, led3: led3, led4: led4,);
-                      } else {
-                        HomeCubit.get(context).postLightData(
-                            led1: 1, led2: led2, led3: led3, led4: led4,);
-                      }
-                    },
-                    child: Text('Ahmed'),
-                  ),
-                ],
+
+                                                  );
+                                                }
+                                                if (isSwitched == false) {
+                                                  HomeCubit.get(context)
+                                                      .lightSwitch();
+                                                  HomeCubit.get(context).postLightData(
+                                                    led1: 1,
+                                                    led2: led_2,
+                                                    led3:led_3,
+                                                    led4:led_4,
+                                                    led5:led_5,
+                                                    led6:led_6,
+
+                                                  );
+                                                }
+                                              }),
+                                          SizedBox(
+                                            width: 20,
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Text(
+                                        'Light',
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          color: Colors.black,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        lighted = !lighted;
+
+                        if (lighted) {
+                          HomeCubit.get(context).postLightData(
+                              led1: 0, led2: led_2, led3: led_3, led4: led_4,led5: led_5,led6: led_6);
+                        } else {
+                          HomeCubit.get(context).postLightData(
+                              led1: 1, led2: led_2, led3: led_3, led4: led_4,led5: led_5,led6: led_6);
+                        }
+                      },
+                      child: Text('Ahmed'),
+                    ),
+                  ],
+                ),
               ),
             ));
       },

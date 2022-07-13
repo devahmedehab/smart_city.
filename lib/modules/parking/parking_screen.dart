@@ -124,7 +124,8 @@ Widget buildChatItem(
               context,
               NumOfParking(
                 city: city,
-              ));
+              )
+          );
         },
         child:Padding(
         padding: EdgeInsets.only(left: 10,right: 10),
@@ -180,7 +181,7 @@ Widget buildChatItem(
                           Row(
                             children: [
                               Text(
-                                'Num of Parking: 10',
+                                'Num of Parking: 3',
                               ),
                               Spacer(),
                               Row(
@@ -195,7 +196,7 @@ Widget buildChatItem(
                                   SizedBox(
                                     width: 7,
                                   ),
-                                  Text('Available : 7'),
+                                  Text('Available : 2'),
                                   SizedBox(
                                     width: 12,
                                   ),

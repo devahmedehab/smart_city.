@@ -42,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return BlocConsumer<HomeCubit, HomeStates>(
       listener: (context, state) {
         if (state is ParkingSuccessHomeState) {
+
           if (state.homeModel.status) {
             var model = HomeCubit.get(context).homeModel;
             temp = model.data.degrees[0];
@@ -153,6 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                         ),
                         onTap: (){
+                          HomeCubit.get(context).getLightsData();
                           navigateTo(context, LivingRoom());
                         },
                       ),
