@@ -85,41 +85,40 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisSpacing: 30,
                   maxCrossAxisExtent: 300.0,
                   children: <Widget>[
-                    SingleChildScrollView(
-                      child: InkWell(
-                        child: Card(
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft:Radius.circular(20),bottomRight:Radius.circular(20) )),
-                          elevation: 40,
-                          shadowColor: Colors.black,
+                    InkWell(
+                      child: Card(
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft:Radius.circular(20),bottomRight:Radius.circular(20) )),
+                        elevation: 40,
+                        shadowColor: Colors.black,
 
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: 5,
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              'Garage',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
                               ),
-                              Text(
-                                'Garage',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              Image(image: AssetImage('assets/images/garage5.png')),
-                              SizedBox(
-                                height: 20,
-                              ),
-                            ],
-                          ),
-
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Image(image: AssetImage('assets/images/garage5.png')),
+                            SizedBox(
+                              height: 20,
+                            ),
+                          ],
                         ),
-                        onTap: (){
-                          navigateTo(context, Garage());
-                        },
+
                       ),
+                      onTap: (){
+                        HomeCubit.get(context).getLightsData();
+                        navigateTo(context, Garage());
+                      },
                     ),
                     SingleChildScrollView(
                       child: InkWell(
@@ -143,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               SizedBox(
-                                height: 20,
+                                height: 5,
                               ),
                               Image(image: AssetImage('assets/images/living.png')),
                               SizedBox(
@@ -179,7 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               SizedBox(
-                                height: 20,
+                                height: 5,
                               ),
                               Image(image: AssetImage('assets/images/kitchen1.png')),
                               SizedBox(
@@ -190,6 +189,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                         ),
                         onTap: (){
+                          HomeCubit.get(context).getLightsData();
                           navigateTo(context, Kitchen());
                         },
                       ),
@@ -216,7 +216,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               SizedBox(
-                                height: 20,
+                                height: 5,
                               ),
                               Image(image: AssetImage('assets/images/bath1.png')),
                               SizedBox(
@@ -227,6 +227,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                         ),
                         onTap: (){
+                          HomeCubit.get(context).getLightsData();
                           navigateTo(context, BathRoom());
                         },
                       ),
@@ -253,7 +254,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               SizedBox(
-                                height: 20,
+                                height: 5,
                               ),
                               Image(image: AssetImage('assets/images/bed4.png')),
                               SizedBox(
@@ -264,6 +265,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                         ),
                         onTap: (){
+                          HomeCubit.get(context).getLightsData();
                           navigateTo(context, BedRoom());
                         },
                       ),
@@ -290,7 +292,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               SizedBox(
-                                height: 20,
+                                height: 5,
                               ),
                               Image(image: AssetImage('assets/images/roof3.png')),
                               SizedBox(
@@ -301,6 +303,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                         ),
                         onTap: (){
+                          HomeCubit.get(context).getLightsData();
                           navigateTo(context, Roof());
                         },
                       ),

@@ -129,13 +129,13 @@ class HomeCubit extends Cubit<HomeStates> {
   }
 
 bool  isLighted=false;
-Icon icon = Icon(Icons.flashlight_on_outlined,size: 60,);
+Icon icon = Icon(Icons.flashlight_off_outlined,size: 60,);
 
   void lightSwitch(){
 
     if (isLighted) {
         icon = Icon(
-        Icons.flashlight_on_outlined,
+        Icons.flashlight_off_outlined,
         size: 60,
       );
         isLighted =!isLighted;
@@ -143,7 +143,7 @@ Icon icon = Icon(Icons.flashlight_on_outlined,size: 60,);
     }
     else{
       icon = Icon(
-        Icons.flashlight_off_outlined,
+        Icons.flashlight_on_outlined,
         size: 60,
       );
       isLighted =!isLighted;

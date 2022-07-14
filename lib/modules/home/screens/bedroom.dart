@@ -35,14 +35,30 @@ class _BedRoomState extends State<BedRoom> {
     RefreshController _refreshController = RefreshController();
     bool _hasInternet = false;
     ConnectivityResult result = ConnectivityResult.none;
+    var lightController = TextEditingController();
+    bool lighted = false;
+
+
+
     return BlocConsumer<HomeCubit, HomeStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is HomeGetSuccessLightsState) {
+
+          var model = HomeCubit.get(context).lightsModel;
+           led_1 = model.data.led1;
+          led_2 = model.data.led2;
+          led_3 = model.data.led3;
+          led_4 = model.data.led4;
+         // led_5 = model.data.led5;
+          led_6 = model.data.led6;
+        }
+      },
       builder: (context, state) {
+
+
+
         return Scaffold(
-            appBar: defaultAppBar(
-              context: context,
-              title: 'Bed Room',
-            ),
+            appBar:defaultAppBar(context: context, title: 'Bed Room'),
             body: SmartRefresher(
               onRefresh: () async {
                 await Future.delayed(Duration(microseconds: 500));
@@ -62,195 +78,100 @@ class _BedRoomState extends State<BedRoom> {
               },
               //  enablePullUp: true,
               controller: _refreshController,
-              child: Column(
-                children: [
-                  CurrentWeather() /*, TodayWeather()*/
-                ],
-              ),
-              /*SingleChildScrollView(
-            child: Column(children: [
-              SizedBox(height: 20),
-              Text(
-                'Today',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 22,
-                  fontWeight: FontWeight.w200,
-                ),
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Center(
+              child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    SleekCircularSlider(
-                      appearance: CircularSliderAppearance(
-                        customColors: CustomSliderColors(
-                          trackColor: Colors.white,
-                          dotColor: Colors.white,
-                          progressBarColor: Colors.white,
-                        ),
-                        startAngle: 0,
-                        angleRange: 360,
-                        size: 250,
-                        customWidths: CustomSliderWidths(
-                            progressBarWidth: 0, handlerSize: 0),
-                      ),
-                      initialValue: temperature,
-                      onChangeEnd: (_value) => _value,
-                      innerWidget: (percentage) => Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Center(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.1),
-                                  blurRadius: 7,
-                                  spreadRadius: 8,
-                                ),
-                              ],
-                            ),
-                            child: Container(
-                              margin: EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.blueGrey,
-                                  width: 1,
-                                ),
-                                shape: BoxShape.circle,
-                                color: Colors.white,
-                              ),
-                              child: Center(
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                      height: 40,
-                                    ),
-                                    Text(
-                                      '$temp °C',
-                                      style: TextStyle(
-                                        fontSize: 12 + (22 * 683 / size.height),
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    if (temp >= 25&&rain ==0)
-                                      CircleAvatar(
-                                          radius: 50,
-                                          backgroundImage: AssetImage(
-                                              'assets/images/weather.jpg')),
-                                    if (temp < 25&&rain==0)
-                                      CircleAvatar(
-                                          radius: 50,
-                                          backgroundImage: AssetImage(
-                                              'assets/images/weather1.png')),
-                                    if (rain == 1)
-                                      CircleAvatar(
-                                          radius: 50,
-                                          backgroundImage: AssetImage(
-                                              'assets/images/weather2.png'))
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    SleekCircularSlider(
-                      appearance: CircularSliderAppearance(
-                        customColors: CustomSliderColors(
-                          trackColor: Colors.white,
-                          dotColor: Colors.white,
-                          progressBarColor: Colors.white,
-                        ),
-                        startAngle: 0,
-                        angleRange: 360,
-                        size: 250,
-                        customWidths: CustomSliderWidths(
-                            progressBarWidth: 0, handlerSize: 0),
-                      ),
-                      min: 0,
-                      max: 30,
-                      initialValue: temperature,
-                      onChangeEnd: (_value) => _value,
-                      innerWidget: (percentage) => Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Center(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.1),
-                                  blurRadius: 7,
-                                  spreadRadius: 8,
-                                ),
-                              ],
-                            ),
-                            child: Container(
-                              margin: EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.blueGrey,
-                                  width: 1,
-                                ),
-                                shape: BoxShape.circle,
-                                color: Colors.white,
-                              ),
-                              child: Center(
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                      height: 75,
-                                    ),
-                                    Text(
-                                      '$hum %',
-                                      style: TextStyle(
-                                        fontSize: 12 + (22 * 683 / size.height),
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text(
-                                      'Humidity',
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    CurrentWeather(),
+                    Divider(),
                     SizedBox(
                       height: 10,
                     ),
+                    Padding(
+                      padding: EdgeInsets.all(20),
+                      child: SingleChildScrollView(
+                          child: Container(
+                            width: 200,
+                            height: 160,
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      bottomRight: Radius.circular(20))),
+                              elevation: 40,
+                              shadowColor: Colors.black,
+                              child: Column(
+                                children: [
+                                  Column(
+                                    children: [
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Row(
+                                        children: [
+                                          SizedBox(
+                                            width: 20,
+                                          ),
+                                          HomeCubit.get(context).icon,
+                                          Spacer(),
+                                          Switch(
+                                              value: HomeCubit.get(context).isLighted,
+                                              onChanged: (value) {
+                                                lighted = !lighted;
+                                                if (lighted ) {
+                                                  HomeCubit.get(context)
+                                                      .lightSwitch();
+                                                  HomeCubit.get(context).postLightData(
+                                                      led1: led_1, led2: led_2, led3: led_3, led4: led_4,led5: 0,led6: led_6);
+                                                }
+                                                else {
+                                                  HomeCubit.get(context)
+                                                      .lightSwitch();
+                                                  HomeCubit.get(context).postLightData(
+                                                      led1: led_1, led2: led_2, led3: led_3, led4: led_4,led5: 1,led6: led_6);
+                                                }
+                                              }),
+                                          SizedBox(
+                                            width: 20,
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Text(
+                                        'Light',
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          color: Colors.black,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )),
+                    ),
+                    /*TextButton(
+                      onPressed: () {
+                        lighted = !lighted;
 
+                        if (lighted) {
+                          HomeCubit.get(context).postLightData(
+                              led1: 0, led2: led_2, led3: led_3, led4: led_4,led5: led_5,led6: led_6);
+                        } else {
+                          HomeCubit.get(context).postLightData(
+                              led1: 1, led2: led_2, led3: led_3, led4: led_4,led5: led_5,led6: led_6);
+                        }
+                      },
+                      child: Text('Ahmed'),
+                    ),*/
                   ],
                 ),
-
-            ),
-        ]),
-          )*/
+              ),
             ));
       },
     );

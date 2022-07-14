@@ -50,7 +50,7 @@ class _LivingRoomState extends State<LivingRoom> {
         if (state is HomeGetSuccessLightsState) {
 
             var model = HomeCubit.get(context).lightsModel;
-            led_1 = model.data.led1;
+           // led_1 = model.data.led1;
             led_2 = model.data.led2;
             led_3 = model.data.led3;
             led_4 = model.data.led4;
@@ -59,7 +59,7 @@ class _LivingRoomState extends State<LivingRoom> {
         }
       },
       builder: (context, state) {
-        bool isSwitched = false;
+
 
 
         return Scaffold(
@@ -121,33 +121,18 @@ class _LivingRoomState extends State<LivingRoom> {
                                           Switch(
                                               value: HomeCubit.get(context).isLighted,
                                               onChanged: (value) {
-                                                HomeCubit.get(context).getLightsData();
-                                                if (isSwitched == true) {
+                                                lighted = !lighted;
+                                                if (lighted ) {
                                                   HomeCubit.get(context)
                                                       .lightSwitch();
                                                   HomeCubit.get(context).postLightData(
-                                                    led1: 0,
-                                                    led2:led_2 ,
-                                                    led3: led_3,
-                                                    led4:led_4,
-                                                    led5: led_5,
-                                                    led6: led_6,
-
-
-                                                  );
+                                                      led1: 1, led2: led_2, led3: led_3, led4: led_4,led5: led_5,led6: led_6);
                                                 }
-                                                if (isSwitched == false) {
+                                                else {
                                                   HomeCubit.get(context)
                                                       .lightSwitch();
                                                   HomeCubit.get(context).postLightData(
-                                                    led1: 1,
-                                                    led2: led_2,
-                                                    led3:led_3,
-                                                    led4:led_4,
-                                                    led5:led_5,
-                                                    led6:led_6,
-
-                                                  );
+                                                      led1: 0, led2: led_2, led3: led_3, led4: led_4,led5: led_5,led6: led_6);
                                                 }
                                               }),
                                           SizedBox(
@@ -175,7 +160,7 @@ class _LivingRoomState extends State<LivingRoom> {
                             ),
                           )),
                     ),
-                    TextButton(
+                    /*TextButton(
                       onPressed: () {
                         lighted = !lighted;
 
@@ -188,7 +173,7 @@ class _LivingRoomState extends State<LivingRoom> {
                         }
                       },
                       child: Text('Ahmed'),
-                    ),
+                    ),*/
                   ],
                 ),
               ),
@@ -216,31 +201,45 @@ class CurrentWeather extends StatelessWidget {
       spreadRadius: 5,
       child: Column(
         children: [
-          Column(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Today',
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.w300),
-                  ),
-                ],
+              Text(
+                'Today',
+                style: TextStyle(fontSize: 30),
               ),
-              Container(
-                height: 250,
-                child: Stack(
-                  children: [
-                    Image(
-                      image: AssetImage('assets/images/thunder.png'),
-                      fit: BoxFit.fill,
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      right: 0,
-                      left: 0,
-                      child: Center(
-                          child: Column(
+            ],
+          ),
+          Container(
+            height: 250,
+            child: Stack(
+              children: [
+                if (temp >= 25 && rain != 1)
+                  Image(
+                    image: AssetImage('assets/images/sunny.png'),
+                    fit: BoxFit.fill,
+                  ),
+                if (5 < temp && temp < 25 && rain != 1)
+                  Image(
+                    image: AssetImage('assets/images/thunder.png'),
+                    fit: BoxFit.fill,
+                  ),
+                if (temp <= 5 && rain != 1)
+                  Image(
+                    image: AssetImage('assets/images/snow.png'),
+                    fit: BoxFit.fill,
+                  ),
+                if (rain == 1)
+                  Image(
+                    image: AssetImage('assets/images/rainy.png'),
+                    fit: BoxFit.fill,
+                  ),
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  left: 0,
+                  child: Center(
+                      child: Column(
                         children: [
                           GlowText(
                             '$temp°c',
@@ -255,19 +254,17 @@ class CurrentWeather extends StatelessWidget {
                               ))
                         ],
                       )),
-                    )
-                  ],
-                ),
-              ),
-              Divider(
-                color: Colors.white,
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              ExtraWeather(),
-            ],
+                )
+              ],
+            ),
           ),
+          Divider(
+            color: Colors.white,
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          ExtraWeather()
         ],
       ),
     );

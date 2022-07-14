@@ -283,7 +283,7 @@ class _ParkingLoginScreenState extends State<ParkingLoginScreen> {
 
                                  ],
                                ),
-                               Center(
+                              /* Center(
                                  child: TextButton(
                                    style: ButtonStyle(
                                      // overlayColor: MaterialStateProperty.all(HexColor('12345678')),
@@ -301,7 +301,7 @@ class _ParkingLoginScreenState extends State<ParkingLoginScreen> {
                                      ),
                                    ),
                                  ),
-                               ),
+                               ),*/
 
                              ],
                            ),

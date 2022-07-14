@@ -13,6 +13,8 @@ class BathRoom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool _hasInternet = false;
+    bool lighted = false;
+
 
 
     Size size = MediaQuery.of(context).size;
@@ -20,7 +22,18 @@ class BathRoom extends StatelessWidget {
 
     ConnectivityResult result = ConnectivityResult.none;
     return BlocConsumer<HomeCubit, HomeStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is HomeGetSuccessLightsState) {
+
+          var model = HomeCubit.get(context).lightsModel;
+          led_1 = model.data.led1;
+          led_2 = model.data.led2;
+        //  led_3 = model.data.led3;
+          led_4 = model.data.led4;
+          led_5 = model.data.led5;
+          led_6 = model.data.led6;
+        }
+      },
       builder: (context, state) {
         bool isSwitched = false;
         return Scaffold(
@@ -43,8 +56,7 @@ class BathRoom extends StatelessWidget {
             },
             //  enablePullUp: true,
             controller: _refreshController,
-            child: Column(
-                children: [
+            child: Column(children: [
               SizedBox(height: 20),
               Text(
                 'Today',
@@ -57,13 +69,13 @@ class BathRoom extends StatelessWidget {
               SizedBox(
                 height: 100,
               ),
-              Row(
+              Column(
                 children: [
                   Padding(
                     padding: EdgeInsets.all(20),
                     child: SingleChildScrollView(
                         child: Container(
-                          width: 200,
+                          width: 180,
                           height: 160,
                           child: Card(
                             shape: RoundedRectangleBorder(
@@ -89,13 +101,18 @@ class BathRoom extends StatelessWidget {
                                         Switch(
                                             value: HomeCubit.get(context).isLighted,
                                             onChanged: (value) {
-                                              if (isSwitched == true) {
+                                              lighted = !lighted;
+                                              if (lighted ) {
                                                 HomeCubit.get(context)
                                                     .lightSwitch();
+                                                HomeCubit.get(context).postLightData(
+                                                    led1: led_1, led2: led_2, led3: 0, led4: led_4,led5: led_5,led6: led_6);
                                               }
-                                              if (isSwitched == false) {
+                                              else {
                                                 HomeCubit.get(context)
                                                     .lightSwitch();
+                                                HomeCubit.get(context).postLightData(
+                                                    led1: led_1, led2: led_2, led3: 1, led4: led_4,led5: led_5,led6: led_6);
                                               }
                                             }),
                                         SizedBox(
@@ -123,7 +140,7 @@ class BathRoom extends StatelessWidget {
                           ),
                         )),
                   ),
-                  Spacer(),
+
                   Padding(
                     padding: EdgeInsets.all(20),
                     child: SingleChildScrollView(
