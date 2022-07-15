@@ -49,7 +49,7 @@ class _BedRoomState extends State<BedRoom> {
           led_2 = model.data.led2;
           led_3 = model.data.led3;
           led_4 = model.data.led4;
-         // led_5 = model.data.led5;
+        //  led_5 = model.data.led5;
           led_6 = model.data.led6;
         }
       },
@@ -111,23 +111,23 @@ class _BedRoomState extends State<BedRoom> {
                                           SizedBox(
                                             width: 20,
                                           ),
-                                          HomeCubit.get(context).icon,
+                                          HomeCubit.get(context).icon5,
                                           Spacer(),
                                           Switch(
-                                              value: HomeCubit.get(context).isLighted,
+                                              value: HomeCubit.get(context).isLighted5,
                                               onChanged: (value) {
                                                 lighted = !lighted;
                                                 if (lighted ) {
                                                   HomeCubit.get(context)
-                                                      .lightSwitch();
+                                                      .lightSwitch5();
                                                   HomeCubit.get(context).postLightData(
-                                                      led1: led_1, led2: led_2, led3: led_3, led4: led_4,led5: 0,led6: led_6);
+                                                      led1: led_1, led2: led_2, led3: led_3, led4: led_4,led5: 1,led6: led_6);
                                                 }
                                                 else {
                                                   HomeCubit.get(context)
-                                                      .lightSwitch();
+                                                      .lightSwitch5();
                                                   HomeCubit.get(context).postLightData(
-                                                      led1: led_1, led2: led_2, led3: led_3, led4: led_4,led5: 1,led6: led_6);
+                                                      led1: led_1, led2: led_2, led3: led_3, led4: led_4,led5: 0,led6: led_6);
                                                 }
                                               }),
                                           SizedBox(
@@ -155,20 +155,7 @@ class _BedRoomState extends State<BedRoom> {
                             ),
                           )),
                     ),
-                    /*TextButton(
-                      onPressed: () {
-                        lighted = !lighted;
 
-                        if (lighted) {
-                          HomeCubit.get(context).postLightData(
-                              led1: 0, led2: led_2, led3: led_3, led4: led_4,led5: led_5,led6: led_6);
-                        } else {
-                          HomeCubit.get(context).postLightData(
-                              led1: 1, led2: led_2, led3: led_3, led4: led_4,led5: led_5,led6: led_6);
-                        }
-                      },
-                      child: Text('Ahmed'),
-                    ),*/
                   ],
                 ),
               ),
@@ -219,12 +206,12 @@ class CurrentWeather extends StatelessWidget {
                     image: AssetImage('assets/images/thunder.png'),
                     fit: BoxFit.fill,
                   ),
-                if (temp <= 5 && rain == 1)
+                if (temp <= 5 && rain != 1)
                   Image(
                     image: AssetImage('assets/images/snow.png'),
                     fit: BoxFit.fill,
                   ),
-                if (rain == 0)
+                if (rain != 1)
                   Image(
                     image: AssetImage('assets/images/rainy.png'),
                     fit: BoxFit.fill,
@@ -235,20 +222,20 @@ class CurrentWeather extends StatelessWidget {
                   left: 0,
                   child: Center(
                       child: Column(
-                    children: [
-                      GlowText(
-                        '$temp°c',
-                        style: TextStyle(
-                            height: 0.1,
-                            fontSize: 60,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text('${DateFormat.EEEE().format(DateTime.now())}',
-                          style: TextStyle(
-                            fontSize: 18,
-                          ))
-                    ],
-                  )),
+                        children: [
+                          GlowText(
+                            '$temp°c',
+                            style: TextStyle(
+                                height: 0.1,
+                                fontSize: 60,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text('${DateFormat.EEEE().format(DateTime.now())}',
+                              style: TextStyle(
+                                fontSize: 18,
+                              ))
+                        ],
+                      )),
                 )
               ],
             ),

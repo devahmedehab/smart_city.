@@ -57,7 +57,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 ).then((value) {
 
                   email = emailController.text;
-                  navigateTo(context,
+                  navigateAndFinish(context,
                       VerifyPassword()
                   );
                 });
@@ -99,7 +99,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
-                        'Password Verification',
+                        'Rest Password ',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 22),
                         textAlign: TextAlign.center,
@@ -155,7 +155,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                           state: ToastStates.SUCCESS
                                       );
                                   },
-                                  text: 'Send',
+                                  text: 'Send OTP',
                                   isUpperCase: true,
                                 ),
                                 fallback: (context) =>

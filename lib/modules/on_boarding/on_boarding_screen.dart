@@ -43,12 +43,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     BoardingModel(
       image: 'assets/images/onboard.png',
       title: 'Smart Home',
-      body: '     You can find out if your home\n is in danger through us\n     from anywhere....',
+      body: '     You can find out if your home\n     is in danger through us\n     from anywhere....',
     ),
     BoardingModel(
       image: 'assets/images/onboard_4.png',
       title: 'Explore New Place For You',
-      body: '      Come on.\n      You can know more about\n your smart city,\n      let\'s check it out.....',
+      body: '      Come on.\n      You can know more about\n      your smart city,\n      let\'s check it out.....',
     ),
   ];
   bool isLast =false;

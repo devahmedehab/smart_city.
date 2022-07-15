@@ -24,11 +24,10 @@ class BathRoom extends StatelessWidget {
     return BlocConsumer<HomeCubit, HomeStates>(
       listener: (context, state) {
         if (state is HomeGetSuccessLightsState) {
-
           var model = HomeCubit.get(context).lightsModel;
           led_1 = model.data.led1;
           led_2 = model.data.led2;
-        //  led_3 = model.data.led3;
+          //led_3 = model.data.led3;
           led_4 = model.data.led4;
           led_5 = model.data.led5;
           led_6 = model.data.led6;
@@ -96,23 +95,23 @@ class BathRoom extends StatelessWidget {
                                         SizedBox(
                                           width: 20,
                                         ),
-                                        HomeCubit.get(context).icon,
+                                        HomeCubit.get(context).icon3,
                                         Spacer(),
                                         Switch(
-                                            value: HomeCubit.get(context).isLighted,
+                                            value: HomeCubit.get(context).isLighted3,
                                             onChanged: (value) {
                                               lighted = !lighted;
                                               if (lighted ) {
                                                 HomeCubit.get(context)
-                                                    .lightSwitch();
+                                                    .lightSwitch3();
                                                 HomeCubit.get(context).postLightData(
-                                                    led1: led_1, led2: led_2, led3: 0, led4: led_4,led5: led_5,led6: led_6);
+                                                    led1: led_1, led2: led_2, led3: 1, led4: led_4,led5: led_5,led6: led_6);
                                               }
                                               else {
                                                 HomeCubit.get(context)
-                                                    .lightSwitch();
+                                                    .lightSwitch3();
                                                 HomeCubit.get(context).postLightData(
-                                                    led1: led_1, led2: led_2, led3: 1, led4: led_4,led5: led_5,led6: led_6);
+                                                    led1: led_1, led2: led_2, led3: 0, led4: led_4,led5: led_5,led6: led_6);
                                               }
                                             }),
                                         SizedBox(
@@ -161,7 +160,7 @@ class BathRoom extends StatelessWidget {
                                     SizedBox(
                                       height: 60,
                                     ),
-                                    if (gas == 1)
+                                    if (gas == 0)
                                       Text(
                                         'Warning.!',
                                         style: TextStyle(
@@ -170,7 +169,7 @@ class BathRoom extends StatelessWidget {
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
-                                    if (gas != 1)
+                                    if (gas != 0)
                                       Text(
                                         'All is well',
                                         style: TextStyle(

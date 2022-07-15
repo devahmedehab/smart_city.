@@ -5,7 +5,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:overlay_support/overlay_support.dart';
+import 'package:smart_city/layout/category.dart';
 import 'package:smart_city/layout/cubit/cubit.dart';
+import 'package:smart_city/layout/cubit/state.dart';
 import 'package:smart_city/layout/layout_screen.dart';
 import 'package:smart_city/models/login_model.dart';
 import 'package:smart_city/modules/home/cubit/cubit.dart';
@@ -93,25 +95,22 @@ class _MyAppState extends State<MyApp> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (BuildContext context) => AppCubit()
+          create: (BuildContext context) => ParkingCubit()
             ..changeAppMode(
               fromShared: widget.isDark,
             ),
         ),
-        BlocProvider(
-          create: (BuildContext context) => HomeCubit()
-            ..changeAppMode(
-              fromShared: widget.isDark,
-            ),
-        ),
+
         BlocProvider(
             create: (BuildContext context) => ParkingCubit()..getUserData()),
         BlocProvider(
             create: (BuildContext context) => SlotsCubit()..getSlotsData()),
         BlocProvider(
-            create: (BuildContext context) => HomeCubit()..getHomeData()),
+            create: (BuildContext context) => HomeCubit()..getHomeData()..changeAppMode(
+    fromShared: widget.isDark,
+    ),),
       ],
-      child: BlocConsumer<AppCubit, AppStates>(
+      child: BlocConsumer<ParkingCubit, ParkingStates>(
           listener: (context, state) {},
           builder: (context, state) {
             return ValueListenableBuilder<ThemeMode>(
@@ -123,7 +122,7 @@ class _MyAppState extends State<MyApp> {
                     theme: lightTheme,
 
                     darkTheme: darkTheme,
-                    themeMode: isDark
+                    themeMode: !isDark
                         ? ThemeMode.light
                         : ThemeMode.dark,
                     home: widget.startWidget,

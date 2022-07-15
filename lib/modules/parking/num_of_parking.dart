@@ -13,22 +13,27 @@ class NumOfParking extends StatelessWidget {
 
     appBar: defaultAppBar(context: context, title: '$city Parking '),
 
-    body:SingleChildScrollView(
-      child: Column(
-          children: [
-            ListView.separated(
+    body:Column(
+      children: [
+        SizedBox(height: 20,),
+        SingleChildScrollView(
+          child: Column(
+              children: [
+                ListView.separated(
 
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemBuilder:(context,index)=>buildChatItem(context,index),
-              separatorBuilder:(context,index)=>SizedBox(
-                height: 10.0,
-              ),
-              itemCount: 2,
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemBuilder:(context,index)=>buildChatItem(context,index),
+                  separatorBuilder:(context,index)=>SizedBox(
+                    height: 10.0,
+                  ),
+                  itemCount: 2,
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+      ],
+    ),
   );
 }
 
@@ -41,7 +46,7 @@ Widget buildChatItem(BuildContext context,index,) =>
       navigateTo(context, Parking(model: 'Parking ${index+1}'));
     },
     child:Card(
-     // color: Colors.blue,
+      elevation: 40,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),
@@ -62,7 +67,7 @@ Widget buildChatItem(BuildContext context,index,) =>
                   ),
                   CircleAvatar(
                     backgroundColor: Colors.teal,
-                    radius: 45,
+                    radius: 36,
                     backgroundImage: AssetImage(
                       'assets/images/22.jpg',
                     ),

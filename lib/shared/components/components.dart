@@ -1,11 +1,14 @@
 
 
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:smart_city/layout/cubit/cubit.dart';
 import 'package:smart_city/shared/style/icon_broken.dart';
 
 import '../cubit/cubit.dart';
+import 'constants.dart';
 
 
 Widget defaultAppBar({
@@ -32,9 +35,9 @@ Widget defaultAppBar({
   );
 }
 
-Widget buildListTile(String title,IconData icon,Function tabHandler ){
+Widget buildListTile(String title,IconData icon,Function tabHandler,Color color ){
   return ListTile(
-    leading:Icon(icon,size: 25,color: Colors.white,) ,
+    leading:Icon(icon,size: 25,color:color,) ,
 
     title: Text(title,style: TextStyle(
 
@@ -49,7 +52,7 @@ Widget buildListTile(String title,IconData icon,Function tabHandler ){
 }
 Widget buildListTile1(context,String title,IconData icon,Function tabHandler, ){
   return ListTile(
-    leading:Icon(icon,size: 25,color: Colors.white,) ,
+    leading:Icon(icon,size: 25,color: color,) ,
 
     title: Text(title,style: TextStyle(
 
@@ -136,6 +139,8 @@ Widget defaultFormField({
   Function onChange,
   bool isPassword = false,
 
+
+
   Function validate,
   String label ,
   IconData prefix,
@@ -146,6 +151,7 @@ Widget defaultFormField({
 
   context}) =>
     TextFormField(
+
       autofillHints: autofill,
       enableInteractiveSelection: true,
      inputFormatters: format,

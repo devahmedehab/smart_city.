@@ -52,4 +52,9 @@ class AppChangeBottomSheetState extends HomeStates{}
 
 class AppChangeModeState extends HomeStates{}
 
-class AppChangeLightState extends HomeStates{}
+class AppChangeLight1State extends HomeStates{}
+class AppChangeLight2State extends HomeStates{}
+class AppChangeLight3State extends HomeStates{}
+class AppChangeLight4State extends HomeStates{}
+class AppChangeLight5State extends HomeStates{}
+class AppChangeLight6State extends HomeStates{}

@@ -29,7 +29,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     bool _hasInternet =false;
     final color = _hasInternet ? Colors.green :Colors.red;
     final text = _hasInternet ? 'Internet': 'No Internet';
-    return BlocConsumer<AppCubit,AppStates>(
+    return BlocConsumer<ParkingCubit,ParkingStates>(
         listener: (context,state){},
           builder: (context,state){
         return Scaffold(
@@ -61,7 +61,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           );
                         }
                   },
-                AppCubit.get(context).color,
+                ParkingCubit.get(context).color,
 
 
               ),
@@ -75,7 +75,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       Icon(Icons.dark_mode_outlined,),
                       SizedBox(width: 30,),
                       Text('Dark Mode',style: TextStyle(
-                        color: AppCubit.get(context).color,
+                        color: ParkingCubit.get(context).color,
                         fontWeight: FontWeight.bold,
                         fontSize: 15,
                       ),),
@@ -86,7 +86,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
                         onChanged: (bool state) {
 
-                          AppCubit.get(context).changeAppMode();
+                          ParkingCubit.get(context).changeAppMode();
                         },
                         rollingInfoRight: const RollingIconInfo(
                           icon: Icons.dark_mode_rounded,
@@ -99,7 +99,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         rollingInfoLeft: const RollingIconInfo(
                           icon: Icons.light_mode_outlined,
                           iconColor: Colors.black,
-                          backgroundColor: Color.fromARGB(255, 59, 78, 90),
+                          backgroundColor: Colors.blue,
                           text: Text('LIGHT'),
                         ),
                       ),
@@ -115,7 +115,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   IconBroken.Lock,
                       (){
                     navigateTo(context, (ChangePassword()));
-                  },                AppCubit.get(context).color,
+                  },                ParkingCubit.get(context).color,
 
               ),
               myDivider(),
@@ -125,7 +125,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   IconBroken.Logout,
                       (){
                     signOut(context);
-                  },                AppCubit.get(context).color,
+                  },                ParkingCubit.get(context).color,
 
               ),
 

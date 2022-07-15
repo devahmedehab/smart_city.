@@ -7,6 +7,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:smart_city/layout/cubit/cubit.dart';
 import 'package:smart_city/layout/cubit/state.dart';
+import 'package:smart_city/modules/About_us/about_us_screen.dart';
 import 'package:smart_city/modules/parking/parking_screen.dart';
 import 'package:smart_city/modules/profile/profile.dart';
 import 'package:smart_city/modules/setting/settings_screen.dart';
@@ -79,140 +80,147 @@ class _LayoutScreenState extends State<LayoutScreen> {
     }, builder: (context, state) {
       var cubit = ParkingCubit.get(context);
       return Scaffold(
-          appBar: AppBar(
-            title: Text('Smart City',),
-
-            elevation: 10,
+        appBar: AppBar(
+          title: Text(
+            'Smart City',
           ),
-          body: SmartRefresher(
-            child: cubit.bottomScreen[cubit.currentIndex],
-            onRefresh: () async {
-              await Future.delayed(Duration(microseconds: 500));
-              _refreshController.refreshFailed();
+          elevation: 10,
+        ),
+        body: SmartRefresher(
+          child: cubit.bottomScreen[cubit.currentIndex],
+          onRefresh: () async {
+            await Future.delayed(Duration(microseconds: 500));
+            _refreshController.refreshFailed();
 
-              _hasInternet = await InternetConnectionChecker().hasConnection;
-              final text = _hasInternet
-                  ? 'Network Connection Success'
-                  : 'Network Connection Failed';
-              result = await Connectivity().checkConnectivity();
+            _hasInternet = await InternetConnectionChecker().hasConnection;
+            final text = _hasInternet
+                ? 'Network Connection Success'
+                : 'Network Connection Failed';
+            result = await Connectivity().checkConnectivity();
 
-              if (_hasInternet) {
-                ParkingCubit.get(context).getUserData();
-                showToast(text: text, state: ToastStates.SUCCESS);
-              } else {
-                showToast(text: text, state: ToastStates.SUCCESS);
-              }
-            },
-            onLoading: () async {
-              await Future.delayed(Duration(microseconds: 500));
-              _refreshController.refreshFailed();
-            },
-            enablePullUp: true,
-            controller: _refreshController,
-          ),
+            if (_hasInternet) {
+              ParkingCubit.get(context).getUserData();
+              showToast(text: text, state: ToastStates.SUCCESS);
+            } else {
+              showToast(text: text, state: ToastStates.SUCCESS);
+            }
+          },
+          onLoading: () async {
+            await Future.delayed(Duration(microseconds: 500));
+            _refreshController.refreshFailed();
+          },
+          controller: _refreshController,
+        ),
         drawer: Container(
-         // color: Colors.white,
+          // color: Colors.white,
           child: ClipRRect(
             child: ClipRRect(
               borderRadius: BorderRadius.only(
-                topRight:Radius.circular(35) ,
-                bottomRight: Radius.circular(35)
-              ),
+                  topRight: Radius.circular(35),
+                  bottomRight: Radius.circular(35)),
               child: Drawer(
-                width:320,
+                width: 300,
                 child: ListView(
                   children: [
                     DrawerHeader(
-                      //  decoration: BoxDecoration(color: Colors.blueGrey),
+                        //  decoration: BoxDecoration(color: Colors.blueGrey),
                         child: InkWell(
-                          child: Row(
-                            children: [
-                              CircleAvatar(
-                                radius: 31,
-                                backgroundColor: Colors.deepPurpleAccent,
-                                child: CircleAvatar(
-                                    radius: 30,
-                                    backgroundImage:
+
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 31,
+                            backgroundColor: Colors.deepPurpleAccent,
+                            child: CircleAvatar(
+                                radius: 30,
+                                backgroundImage:
                                     AssetImage('assets/images/onboard_1.png')),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                      nameController.text,
-                                      maxLines: 2,
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                       // color: Colors.black,
-                                        fontFamily: '',
-                                      )),
-                                  const SizedBox(
-                                    height: 4,
-                                  ),
-                                  Text(
-                                    emailController.text,
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                   //   color: Colors.black,
-                                      fontFamily: '',
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
                           ),
-                          onTap: () async{
-                            _hasInternet=await InternetConnectionChecker().hasConnection ;
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            width: 180,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(nameController.text,
+                                    maxLines: 2,
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      // color: Colors.black,
+                                      fontFamily: '',
+                                    )),
+                                const SizedBox(
+                                  height: 4,
+                                ),
+                                Text(
+                                  emailController.text,
+                                  maxLines: 2,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontFamily: '',
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      onTap: () async {
+                        _hasInternet =
+                            await InternetConnectionChecker().hasConnection;
 
-                            if (_hasInternet) {
-                              navigateTo(
-                                context,
-                                ProfileScreen(),
-                              );
-                            }
-
-                            else{
-                              showToast(
-                                  text: 'Please Check Your Network Connection', state: ToastStates.ERROR
-                              );
-                            }
-                          },
-                        )),
-
-                      myDivider(),
+                        if (_hasInternet) {
+                          navigateTo(
+                            context,
+                            ProfileScreen(),
+                          );
+                        } else {
+                          showToast(
+                              text: 'Please Check Your Network Connection',
+                              state: ToastStates.ERROR);
+                        }
+                      },
+                    )),
+                    myDivider(),
                     SizedBox(
                       height: 30,
                     ),
-                    buildListTile("Main Screen", IconBroken.Home, () {navigateAndFinish(context, LayoutScreen());}),
+                    buildListTile("Main Screen", IconBroken.Home, () {
+                      navigateAndFinish(context, LayoutScreen());
+                    }, ParkingCubit.get(context).color),
                     SizedBox(
                       height: 15,
                     ),
-                    buildListTile("Profile", IconBroken.Profile, () async{
-                      _hasInternet=await InternetConnectionChecker().hasConnection ;
+                    buildListTile("Profile", IconBroken.Profile, () async {
+                      _hasInternet =
+                          await InternetConnectionChecker().hasConnection;
 
                       if (_hasInternet) {
                         navigateTo(
                           context,
                           ProfileScreen(),
                         );
-
-                      }
-                      else{
+                      } else {
                         showToast(
-                            text: 'Please Check Your Network Connection', state: ToastStates.ERROR
-                        );
+                            text: 'Please Check Your Network Connection',
+                            state: ToastStates.ERROR);
                       }
-                    }),
+                    }, ParkingCubit.get(context).color),
                     SizedBox(
                       height: 15,
                     ),
                     buildListTile("Settings", IconBroken.Setting, () {
                       navigateTo(context, SettingsScreen());
-                    }),
+                    }, ParkingCubit.get(context).color),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    buildListTile("About Us", IconBroken.Info_Circle, () {
+                      navigateTo(context, AboutUsScreen());
+                    }, ParkingCubit.get(context).color),
                     SizedBox(
                       height: 15,
                     ),
@@ -222,7 +230,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
                     ),
                     buildListTile("Log out", IconBroken.Logout, () {
                       signOut(context);
-                    }),
+                    }, ParkingCubit.get(context).color),
                     SizedBox(
                       height: 15,
                     ),
@@ -233,32 +241,26 @@ class _LayoutScreenState extends State<LayoutScreen> {
           ),
         ),
 
-          //
+        //
 
-           bottomNavigationBar: BottomNavigationBar(
-
-
-            onTap: (index) {
-              cubit.changeBottom(index);
-
-            },
-            currentIndex: cubit.currentIndex,
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(IconBroken.Category),
-                label: 'Parking',
-
-              ),
-
-              BottomNavigationBarItem(
-
-                icon: Icon(IconBroken.Home),
-                label: 'Home',
-              ),
-            ],
-          ),
-        );
-     // );
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: (index) {
+            cubit.changeBottom(index);
+          },
+          currentIndex: cubit.currentIndex,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(IconBroken.Category),
+              label: 'Parking',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(IconBroken.Home),
+              label: 'Home',
+            ),
+          ],
+        ),
+      );
+      // );
     });
   }
 }

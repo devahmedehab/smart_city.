@@ -28,16 +28,16 @@ class Roof extends StatelessWidget {
           var model = HomeCubit.get(context).lightsModel;
           led_1 = model.data.led1;
           led_2 = model.data.led2;
-          //  led_3 = model.data.led3;
+            led_3 = model.data.led3;
           led_4 = model.data.led4;
           led_5 = model.data.led5;
-          led_6 = model.data.led6;
+         // led_6 = model.data.led6;
         }
       },
       builder: (context, state) {
         bool isSwitched = false;
         return Scaffold(
-          appBar: defaultAppBar(context: context, title: 'Bathroom'),
+          appBar: defaultAppBar(context: context, title: 'Roof'),
           body: SmartRefresher(
             onRefresh: () async {
               await Future.delayed(Duration(microseconds: 500));
@@ -97,23 +97,23 @@ class Roof extends StatelessWidget {
                                             SizedBox(
                                               width: 20,
                                             ),
-                                            HomeCubit.get(context).icon,
+                                            HomeCubit.get(context).icon6,
                                             Spacer(),
                                             Switch(
-                                                value: HomeCubit.get(context).isLighted,
+                                                value: HomeCubit.get(context).isLighted6,
                                                 onChanged: (value) {
                                                   lighted = !lighted;
                                                   if (lighted ) {
                                                     HomeCubit.get(context)
-                                                        .lightSwitch();
+                                                        .lightSwitch6();
                                                     HomeCubit.get(context).postLightData(
-                                                        led1: led_1, led2: led_2, led3: 1, led4: led_4,led5: led_5,led6: led_6);
+                                                        led1: led_1, led2: led_2, led3: led_3, led4: led_4,led5: led_5,led6: 1);
                                                   }
                                                   else {
                                                     HomeCubit.get(context)
-                                                        .lightSwitch();
+                                                        .lightSwitch6();
                                                     HomeCubit.get(context).postLightData(
-                                                        led1: led_1, led2: led_2, led3: 0, led4: led_4,led5: led_5,led6: led_6);
+                                                        led1: led_1, led2: led_2, led3: led_3, led4: led_4,led5: led_5,led6: 0);
                                                   }
                                                 }),
                                             SizedBox(
@@ -141,7 +141,6 @@ class Roof extends StatelessWidget {
                               ),
                             )),
                       ),
-                      Spacer(),
                       Padding(
                         padding: EdgeInsets.all(20),
                         child: SingleChildScrollView(
@@ -160,18 +159,18 @@ class Roof extends StatelessWidget {
                                     SizedBox(
                                       height: 5,
                                     ),
-                                    if (rain != 1)
+                                    if (rain == 1)
                                       CircleAvatar(
                                           radius: 30,
                                           backgroundImage: AssetImage(
                                               'assets/images/sunny.png'),),
 
-                                    if (rain == 1)
+                                    if (rain != 1)
                                       CircleAvatar(
                                           radius: 30,
                                           backgroundImage: AssetImage(
                                               'assets/images/rainy.png')),
-                                    if(rain ==1)
+                                    if(rain !=1)
                                       Text(
                                         'Rainy',
                                         style: TextStyle(
@@ -184,15 +183,16 @@ class Roof extends StatelessWidget {
                                     SizedBox(
                                       height: 10,
                                     ),
-                                    if (rain != 1)
+                                    if (rain == 1)
                                     Text(
-                                      'All is well',
+                                      'Sunny',
                                       style: TextStyle(
                                         fontSize: 20,
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold
                                       ),
                                     ),
+                                    SizedBox(height: 10,),
 
                                     Text(
                                       'Rain',

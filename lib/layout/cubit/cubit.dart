@@ -28,27 +28,7 @@ class ParkingCubit extends Cubit<ParkingStates> {
     HomeScreen(),
 
   ];
-  bool isDark =false;
 
-  void changeAppMode({bool fromShared})
-  {
-    if(fromShared !=null){
-
-      isDark=fromShared;
-      emit(AppChangeModeState());
-    } else
-    {
-      isDark =!isDark;
-      CacheHelper.putBoolean(key: 'isDark', value: isDark).then((value)
-      {
-        emit(AppChangeModeState());
-      } );
-
-    }
-
-
-
-  }
 
 
 
@@ -119,5 +99,30 @@ class ParkingCubit extends Cubit<ParkingStates> {
       print(error.toString());
       emit(ParkingErrorUpdateState());
     });
+  }
+  Color color=Colors.black;
+
+  void changeAppMode({bool fromShared})
+  {
+    if(fromShared !=null){
+
+      isDark=fromShared;
+      emit(AppChangeModeState());
+    } else
+    {
+      if(!isDark)color=Colors.white;
+      else color=Colors.black;
+
+
+      isDark =!isDark;
+      CacheHelper.putBoolean(key: 'isDark', value: isDark).then((value)
+      {
+        emit(AppChangeModeState());
+      } );
+
+    }
+
+
+
   }
 }

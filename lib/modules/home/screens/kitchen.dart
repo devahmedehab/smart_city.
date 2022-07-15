@@ -28,7 +28,7 @@ class Kitchen extends StatelessWidget {
           led_1 = model.data.led1;
           led_2 = model.data.led2;
           led_3 = model.data.led3;
-         // led_4 = model.data.led4;
+        //  led_4 = model.data.led4;
           led_5 = model.data.led5;
           led_6 = model.data.led6;
         }
@@ -95,23 +95,23 @@ class Kitchen extends StatelessWidget {
                                         SizedBox(
                                           width: 20,
                                         ),
-                                        HomeCubit.get(context).icon,
+                                        HomeCubit.get(context).icon4,
                                         Spacer(),
                                         Switch(
-                                            value: HomeCubit.get(context).isLighted,
+                                            value: HomeCubit.get(context).isLighted4,
                                             onChanged: (value) {
                                               lighted = !lighted;
                                               if (lighted ) {
                                                 HomeCubit.get(context)
-                                                    .lightSwitch();
+                                                    .lightSwitch4();
                                                 HomeCubit.get(context).postLightData(
-                                                    led1: led_1, led2: led_2, led3: led_3, led4: 0,led5: led_5,led6: led_6);
+                                                    led1: led_1, led2: led_2, led3: led_3, led4: 1,led5: led_5,led6: led_6);
                                               }
                                               else {
                                                 HomeCubit.get(context)
-                                                    .lightSwitch();
+                                                    .lightSwitch4();
                                                 HomeCubit.get(context).postLightData(
-                                                    led1: led_1, led2: led_2, led3: led_3, led4: 1,led5: led_5,led6: led_6);
+                                                    led1: led_1, led2: led_2, led3: led_3, led4: 0,led5: led_5,led6: led_6);
                                               }
                                             }),
                                         SizedBox(
@@ -160,7 +160,7 @@ class Kitchen extends StatelessWidget {
                                     SizedBox(
                                       height: 60,
                                     ),
-                                    if (gas == 1)
+                                    if (gas == 0)
                                       Text(
                                         'Warning.!',
                                         style: TextStyle(
@@ -169,7 +169,7 @@ class Kitchen extends StatelessWidget {
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
-                                    if (gas != 1)
+                                    if (gas != 0)
                                       Text(
                                         'All is well',
                                         style: TextStyle(

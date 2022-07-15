@@ -30,8 +30,8 @@ class _GarageState extends State<Garage> {
         if (state is HomeGetSuccessLightsState) {
 
           var model = HomeCubit.get(context).lightsModel;
-          led_1 = model.data.led1;
-          //led_2 = model.data.led2;
+        //  led_1 = model.data.led1;
+          led_2 = model.data.led2;
           led_3 = model.data.led3;
           led_4 = model.data.led4;
           led_5 = model.data.led5;
@@ -99,23 +99,23 @@ class _GarageState extends State<Garage> {
                                     SizedBox(
                                       width: 20,
                                     ),
-                                    HomeCubit.get(context).icon,
+                                    HomeCubit.get(context).icon1,
                                     Spacer(),
                                     Switch(
-                                        value: HomeCubit.get(context).isLighted,
+                                        value: HomeCubit.get(context).isLighted1,
                                         onChanged: (value) {
                                           lighted = !lighted;
                                           if (lighted ) {
                                             HomeCubit.get(context)
-                                                .lightSwitch();
+                                                .lightSwitch1();
                                             HomeCubit.get(context).postLightData(
-                                                led1: led_1, led2: 1, led3: led_3, led4: led_4,led5: led_5,led6: led_6);
+                                                led1: 1, led2: led_2, led3: led_3, led4: led_4,led5: led_5,led6: led_6);
                                           }
                                           else {
                                             HomeCubit.get(context)
-                                                .lightSwitch();
+                                                .lightSwitch1();
                                             HomeCubit.get(context).postLightData(
-                                                led1: led_1, led2: 0, led3: led_3, led4: led_4,led5: led_5,led6: led_6);
+                                                led1: 0, led2: led_2, led3: led_3, led4: led_4,led5: led_5,led6: led_6);
                                           }
                                         }),
                                     SizedBox(
@@ -144,7 +144,7 @@ class _GarageState extends State<Garage> {
                     )),
                   ),
 
-                  Padding(
+                 /* Padding(
                     padding: EdgeInsets.all(20),
                     child: SingleChildScrollView(
                         child: Container(
@@ -201,7 +201,7 @@ class _GarageState extends State<Garage> {
                         ),
                       ),
                     )),
-                  ),
+                  ),*/
                 ],
               )
             ]),

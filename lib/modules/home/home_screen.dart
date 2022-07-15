@@ -85,40 +85,42 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisSpacing: 30,
                   maxCrossAxisExtent: 300.0,
                   children: <Widget>[
-                    InkWell(
-                      child: Card(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft:Radius.circular(20),bottomRight:Radius.circular(20) )),
-                        elevation: 40,
-                        shadowColor: Colors.black,
+                    SingleChildScrollView(
+                      child: InkWell(
+                        child: Card(
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft:Radius.circular(20),bottomRight:Radius.circular(20) )),
+                          elevation: 40,
+                          shadowColor: Colors.black,
 
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              'Garage',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 5,
                               ),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Image(image: AssetImage('assets/images/garage5.png')),
-                            SizedBox(
-                              height: 20,
-                            ),
-                          ],
-                        ),
+                              Text(
+                                'Garage',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Image(image: AssetImage('assets/images/garage5.png')),
+                              SizedBox(
+                                height: 20,
+                              ),
+                            ],
+                          ),
 
+                        ),
+                        onTap: (){
+                          HomeCubit.get(context).getLightsData();
+                          navigateTo(context, Garage());
+                        },
                       ),
-                      onTap: (){
-                        HomeCubit.get(context).getLightsData();
-                        navigateTo(context, Garage());
-                      },
                     ),
                     SingleChildScrollView(
                       child: InkWell(

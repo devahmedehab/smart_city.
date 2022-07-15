@@ -50,8 +50,8 @@ class _LivingRoomState extends State<LivingRoom> {
         if (state is HomeGetSuccessLightsState) {
 
             var model = HomeCubit.get(context).lightsModel;
-           // led_1 = model.data.led1;
-            led_2 = model.data.led2;
+            led_1 = model.data.led1;
+           // led_2 = model.data.led2;
             led_3 = model.data.led3;
             led_4 = model.data.led4;
             led_5 = model.data.led5;
@@ -116,23 +116,23 @@ class _LivingRoomState extends State<LivingRoom> {
                                           SizedBox(
                                             width: 20,
                                           ),
-                                          HomeCubit.get(context).icon,
+                                          HomeCubit.get(context).icon2,
                                           Spacer(),
                                           Switch(
-                                              value: HomeCubit.get(context).isLighted,
+                                              value: HomeCubit.get(context).isLighted2,
                                               onChanged: (value) {
                                                 lighted = !lighted;
                                                 if (lighted ) {
                                                   HomeCubit.get(context)
-                                                      .lightSwitch();
+                                                      .lightSwitch2();
                                                   HomeCubit.get(context).postLightData(
-                                                      led1: 1, led2: led_2, led3: led_3, led4: led_4,led5: led_5,led6: led_6);
+                                                      led1: led_1, led2: 1, led3: led_3, led4: led_4,led5: led_5,led6: led_6);
                                                 }
                                                 else {
                                                   HomeCubit.get(context)
-                                                      .lightSwitch();
+                                                      .lightSwitch2();
                                                   HomeCubit.get(context).postLightData(
-                                                      led1: 0, led2: led_2, led3: led_3, led4: led_4,led5: led_5,led6: led_6);
+                                                      led1: led_1, led2: 0, led3: led_3, led4: led_4,led5: led_5,led6: led_6);
                                                 }
                                               }),
                                           SizedBox(
@@ -214,22 +214,22 @@ class CurrentWeather extends StatelessWidget {
             height: 250,
             child: Stack(
               children: [
-                if (temp >= 25 && rain != 1)
+                if (temp >= 25 && rain == 1)
                   Image(
                     image: AssetImage('assets/images/sunny.png'),
                     fit: BoxFit.fill,
                   ),
-                if (5 < temp && temp < 25 && rain != 1)
+                if (5 < temp && temp < 25 && rain == 1)
                   Image(
                     image: AssetImage('assets/images/thunder.png'),
                     fit: BoxFit.fill,
                   ),
-                if (temp <= 5 && rain != 1)
+                if (temp <= 5 && rain == 1)
                   Image(
                     image: AssetImage('assets/images/snow.png'),
                     fit: BoxFit.fill,
                   ),
-                if (rain == 1)
+                if (rain != 1)
                   Image(
                     image: AssetImage('assets/images/rainy.png'),
                     fit: BoxFit.fill,

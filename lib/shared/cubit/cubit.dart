@@ -146,29 +146,5 @@ class AppCubit extends Cubit<AppStates>
     fabIcon=icon;
     emit(AppChangeBottomSheetState());
   }
-  Color color=Colors.white;
 
-  void changeAppMode({bool fromShared})
-  {
-    if(fromShared !=null){
-
-      isDark=fromShared;
-      emit(AppChangeModeState());
-    } else
-    {
-      if(isDark)color=Colors.white;
-      else color=Colors.black;
-
-
-      isDark =!isDark;
-      CacheHelper.putBoolean(key: 'isDark', value: isDark).then((value)
-      {
-        emit(AppChangeModeState());
-      } );
-
-    }
-
-
-
-  }
 }

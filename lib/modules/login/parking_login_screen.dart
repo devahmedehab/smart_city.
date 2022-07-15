@@ -105,7 +105,7 @@ class _ParkingLoginScreenState extends State<ParkingLoginScreen> {
              children: [
                Container(
                    decoration: BoxDecoration(
-                       image: DecorationImage(image: AssetImage('assets/images/pp1.png',),
+                       image: DecorationImage(image: AssetImage('assets/images/back.webp',),
                          fit: BoxFit.cover,
                        )
                    ),
@@ -146,6 +146,7 @@ class _ParkingLoginScreenState extends State<ParkingLoginScreen> {
                              height: 30,
                            ),
                            defaultFormField(
+
                              controller: emailController,
                              type: TextInputType.emailAddress,
                              autofill: [AutofillHints.email],

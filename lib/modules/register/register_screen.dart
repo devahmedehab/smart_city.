@@ -85,7 +85,7 @@ class ParkingRegisterScreen extends StatelessWidget {
 
                 Container(
                     decoration: BoxDecoration(
-                        image: DecorationImage(image: AssetImage('assets/images/pp1.png',),
+                        image: DecorationImage(image: AssetImage('assets/images/back.webp',),
                           fit: BoxFit.cover,
                         )
                     ),
@@ -109,6 +109,7 @@ class ParkingRegisterScreen extends StatelessWidget {
 
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          SizedBox(height: 30,),
                           Hero(
                             tag: 'TextTag',
                             child: Text('Sign Up',
@@ -122,7 +123,7 @@ class ParkingRegisterScreen extends StatelessWidget {
 
                             ),
                           ),
-                          SizedBox(height: 20,),
+                          SizedBox(height: 10,),
 
                           Text(
                             '',
@@ -131,7 +132,7 @@ class ParkingRegisterScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(
-                            height: 30,
+                            height: 10,
                           ),
                           defaultFormField(
                             controller: nameController,
@@ -145,7 +146,7 @@ class ParkingRegisterScreen extends StatelessWidget {
                             prefix: Icons.person,
                           ),
                           SizedBox(
-                            height: 15,
+                            height: 10,
                           ),
                           defaultFormField(
                             controller: emailController,
@@ -165,7 +166,7 @@ class ParkingRegisterScreen extends StatelessWidget {
                           ),
 
                           SizedBox(
-                            height: 15,
+                            height: 10,
                           ),
                           defaultFormField(
                             controller: phoneController,
@@ -181,7 +182,7 @@ class ParkingRegisterScreen extends StatelessWidget {
                             prefix: Icons.phone,
                           ),
                           SizedBox(
-                            height: 30,
+                            height: 10,
                           ),
                           Row(
                             children: [
