@@ -8,8 +8,6 @@ import 'package:smart_city/modules/profile/edit_profile_screen.dart';
 import 'package:smart_city/modules/setting/dark_mode/dark_mode.dart';
 import 'package:smart_city/shared/components/components.dart';
 import 'package:smart_city/shared/components/constants.dart';
-import 'package:smart_city/shared/cubit/cubit.dart';
-import 'package:smart_city/shared/cubit/states.dart';
 import 'package:smart_city/shared/style/icon_broken.dart';
 
 import '../password/changePassword.dart';

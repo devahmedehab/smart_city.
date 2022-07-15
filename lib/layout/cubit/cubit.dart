@@ -5,7 +5,6 @@ import 'package:smart_city/models/login_model.dart';
 import 'package:smart_city/modules/home/home_screen.dart';
 import 'package:smart_city/modules/parking/parking_screen.dart';
 import 'package:smart_city/shared/components/constants.dart';
-import 'package:smart_city/shared/cubit/cubit.dart';
 import 'package:smart_city/shared/network/cache_helper.dart';
 import 'package:smart_city/shared/network/dio_helper.dart';
 

@@ -113,104 +113,104 @@ class ParkingScreen extends StatelessWidget {
 }
 
 Widget buildChatItem(
-  String city,
-  BuildContext context,
-  index,
-) =>
+    String city,
+    BuildContext context,
+    index,
+    ) =>
     InkWell(
-        borderRadius: BorderRadius.all(Radius.circular(40)),
-        onTap: () {
-          navigateTo(
-              context,
-              NumOfParking(
-                city: city,
-              )
-          );
-        },
-        child:Padding(
+      borderRadius: BorderRadius.all(Radius.circular(40)),
+      onTap: () {
+        navigateTo(
+            context,
+            NumOfParking(
+              city: city,
+            )
+        );
+      },
+      child:Padding(
         padding: EdgeInsets.only(left: 10,right: 10),
-          child: Card(
-            shadowColor: Colors.black,
-            elevation: 40,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(50),
-                  bottomLeft: Radius.circular(10),
-                )),
+        child: Card(
+          shadowColor: Colors.black,
+          elevation: 40,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(50),
+                bottomLeft: Radius.circular(10),
+              )),
           //  color: Colors.blue,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 12,left: 10,bottom: 12),
-              child: Container(
-                child: Row(
-                  children: [
-                    Stack(
-                      alignment: AlignmentDirectional.bottomEnd,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 12,left: 10,bottom: 12),
+            child: Container(
+              child: Row(
+                children: [
+                  Stack(
+                    alignment: AlignmentDirectional.bottomEnd,
+                    children: [
+                      CircleAvatar(
+                        backgroundColor: Colors.grey,
+                        radius: 36,
+                        backgroundImage: AssetImage('assets/images/1.jpeg'),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CircleAvatar(
-                          backgroundColor: Colors.grey,
-                          radius: 36,
-                          backgroundImage: AssetImage('assets/images/1.jpeg'),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                '${city}',
+                                style: TextStyle(
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.bold),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              'Num of Parking: 3',
+                            ),
+                            Spacer(),
+                            Row(
+                              children: [
+                                Container(
+                                  width: 8.0,
+                                  height: 8.0,
+                                  decoration: BoxDecoration(
+                                      color: Colors.green,
+                                      shape: BoxShape.circle),
+                                ),
+                                SizedBox(
+                                  width: 7,
+                                ),
+                                Text('Available : 2'),
+                                SizedBox(
+                                  width: 12,
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                    SizedBox(
-                      width: 10.0,
-                    ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  '${city}',
-                                  style: TextStyle(
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.bold),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                'Num of Parking: 3',
-                              ),
-                              Spacer(),
-                              Row(
-                                children: [
-                                  Container(
-                                    width: 8.0,
-                                    height: 8.0,
-                                    decoration: BoxDecoration(
-                                        color: Colors.green,
-                                        shape: BoxShape.circle),
-                                  ),
-                                  SizedBox(
-                                    width: 7,
-                                  ),
-                                  Text('Available : 2'),
-                                  SizedBox(
-                                    width: 12,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          ) ,
-        ),
-        );
+          ),
+        ) ,
+      ),
+    );

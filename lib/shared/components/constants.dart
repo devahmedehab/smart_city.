@@ -53,6 +53,7 @@ var slots3;
 var slots4;
 var slots5;
 var slots6;
+var freeSlots;
 var temp;
 var gas;
 var hum;

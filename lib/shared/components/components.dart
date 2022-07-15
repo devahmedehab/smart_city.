@@ -7,7 +7,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:smart_city/layout/cubit/cubit.dart';
 import 'package:smart_city/shared/style/icon_broken.dart';
 
-import '../cubit/cubit.dart';
 import 'constants.dart';
 
 

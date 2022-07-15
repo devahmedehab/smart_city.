@@ -15,7 +15,6 @@ import 'package:smart_city/shared/components/components.dart';
 import 'package:smart_city/shared/components/constants.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:smart_city/shared/cubit/cubit.dart';
 import 'package:smart_city/shared/style/icon_broken.dart';
 
 class LayoutScreen extends StatefulWidget {

@@ -14,7 +14,6 @@ import 'package:smart_city/shared/components/components.dart';
 import 'package:smart_city/shared/components/constants.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_city/shared/components/constants.dart';
-import 'package:smart_city/shared/cubit/cubit.dart';
 
 class LivingRoom extends StatefulWidget {
   @override
