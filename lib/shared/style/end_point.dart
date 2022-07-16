@@ -19,6 +19,7 @@ const parking_slots = 'parking/slots';
 const degrees ='home/degrees';
 
 const lights ='home/lights';
+const password='home/pass';
 
 
 

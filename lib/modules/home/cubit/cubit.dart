@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_city/models/home_model.dart';
 import 'package:smart_city/models/light_model.dart';
+import 'package:smart_city/models/pass_model.dart';
 import 'package:smart_city/modules/home/cubit/states.dart';
 import 'package:smart_city/shared/components/constants.dart';
 import 'package:smart_city/shared/network/cache_helper.dart';
@@ -256,5 +257,37 @@ class HomeCubit extends Cubit<HomeStates> {
 
 
     emit(AppChangeLight6State());
+  }
+
+  PassModel passModel;
+
+
+  Future postPassData({
+    String pass,
+
+
+
+  }) async
+
+  {
+    emit(HomePostLoadingPassState());
+
+
+    await DioHelper.postData(
+      url: password,
+      token: token,
+      data: {
+        'password': pass,
+
+      },
+    ).then((value) {
+      passModel = PassModel.fromJson(value.data);
+
+
+      emit(HomePostSuccessPassState(passModel));
+    }).catchError((error) {
+      print(error.toString());
+      emit(HomePostErrorPassState(error.toString()));
+    });
   }
 }

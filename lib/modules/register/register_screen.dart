@@ -142,7 +142,7 @@ class ParkingRegisterScreen extends StatelessWidget {
                                 return 'Please Enter Your Name';
                               }
                             },
-                            label: 'User Name',
+                            label: 'Username',
                             prefix: Icons.person,
                           ),
                           SizedBox(

@@ -103,7 +103,7 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(
             create: (BuildContext context) => SlotsCubit()..getSlotsData()),
         BlocProvider(
-            create: (BuildContext context) => HomeCubit()..getHomeData()..changeAppMode(
+            create: (BuildContext context) => HomeCubit()..getHomeData()..getLightsData()..changeAppMode(
     fromShared: widget.isDark,
     ),),
       ],
